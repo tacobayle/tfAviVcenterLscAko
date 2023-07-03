@@ -1,0 +1,20 @@
+#!/bin/bash
+for i in {1..20}; do curl -k https://blue-dev.vcenter.alb.com; sleep 0.5 ; done
+for i in {1..20}; do curl -k https://blue-prod.vcenter.alb.com; sleep 0.5 ; done
+for i in {1..20}; do curl -k https://app-security.vcenter.alb.com; sleep 0.5 ; done
+for i in {1..20}; do curl -k https://app-waf.vcenter.alb.com; sleep 0.5 ; done
+for i in {1..20}; do curl -k https://app-avi.vcenter.alb.com; sleep 0.5 ; done
+for i in {1..20}; do curl -k https://green-preprod.vcenter.alb.com; sleep 0.5 ; done
+for i in {1..20}; do curl -k https://app-content-switching.vcenter.alb.com; sleep 0.5 ; done
+for i in {1..20}; do curl -k https://vs-app-migration.vcenter.alb.com; sleep 0.5 ; done
+for i in {1..20}; do curl -k https://app-hello-world.vcenter.alb.com; sleep 0.5 ; done
+for i in {1..20}; do curl -k https://orange-dev.vcenter.alb.com; sleep 0.5 ; done
+for i in {1..20}; do curl -k https://orange-prod.vcenter.alb.com; sleep 0.5 ; done
+for i in {1..20}; do curl -k https://green-prod.vcenter.alb.com; sleep 0.5 ; done
+for i in {1..20}; do curl -k https://app-se-cpu-auto-scale.vcenter.alb.com; sleep 0.5 ; done
+for i in {1..20}; do curl -k https://green-dev.vcenter.alb.com; sleep 0.5 ; done
+for i in {1..20}; do curl -k https://blue-preprod.vcenter.alb.com; sleep 0.5 ; done
+for i in {1..20}; do curl -k https://app-analytics.vcenter.alb.com; sleep 0.5 ; done
+for i in {1..20}; do curl -k https://orange-preprod.vcenter.alb.com; sleep 0.5 ; done
+for i in {1..30}; do curl -k https://app-analytics.vcenter.alb.com/wrongpath; sleep 0.5 ; done
+for i in {1..10}; do curl -k https://app-lsc.lsc.avi.com; sleep 0.5 ; done

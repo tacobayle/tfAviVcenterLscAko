@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web1
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 80
+      name: eighty
+  selector:
+    app: web-front1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web2
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 80
+      name: eighty
+  selector:
+    app: web-front2
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web3
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 80
+      name: eighty
+  selector:
+    app: web-front3

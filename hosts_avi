@@ -1,0 +1,14 @@
+---
+all:
+  children:
+    controller:
+      hosts:
+        10.41.135.167:
+        10.41.135.164:
+        10.41.135.163:
+    seLsc:
+      hosts:
+        10.41.135.165:
+        10.41.135.166:
+  vars:
+    ansible_user: ubuntu

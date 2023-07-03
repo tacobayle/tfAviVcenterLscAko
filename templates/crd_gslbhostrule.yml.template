@@ -1,0 +1,15 @@
+apiVersion: amko.vmware.com/v1alpha1
+kind: GSLBHostRule
+metadata:
+  name: gslb-host-rule-1
+  namespace: avi-system
+spec:
+  fqdn: ingress.${gslb_domain}
+  ttl: 0
+#  trafficSplit:
+#    - cluster: context1
+#      weight: 8
+#      priority: 4
+#    - cluster: context2
+#      weight: 2
+#      priority: 3

@@ -1,0 +1,103 @@
+#!/bin/bash
+#
+IFS=$'\n'
+#
+gslb_members_json="{}"
+gslb_members_json=$(echo $gslb_members_json | jq '. += {"apiVersion": "v1"}')
+gslb_members_json=$(echo $gslb_members_json | jq '. += {"clusters": []}')
+gslb_members_json=$(echo $gslb_members_json | jq '. += {"contexts": []}')
+gslb_members_json=$(echo $gslb_members_json | jq '. += {"users": []}')
+#
+# Create gslb-members
+localFile=/home/ubuntu/amko/gslb-members
+for cluster in $(seq 1 ${cluster})
+#for cluster in $(seq 1 2)
+do
+  # clusters
+  cluster_certificate_authority_data=$(yq -c -r '.clusters[0].cluster."certificate-authority-data"' /home/ubuntu/amko/config$cluster)
+  cluster_server=$(yq -c -r '.clusters[0].cluster.server' /home/ubuntu/amko/config$cluster)
+  name=cluster$cluster
+  gslb_members_json=$(echo $gslb_members_json | jq '.clusters += [{"cluster": {"certificate-authority-data": "'$(echo $cluster_certificate_authority_data)'", "server": "'$(echo $cluster_server)'"}, "name": "'$(echo $name)'"}]')
+  # contexts
+  context_cluster=cluster$cluster
+  context_user=user$cluster
+  name=context$cluster
+  gslb_members_json=$(echo $gslb_members_json | jq '.contexts += [{"context": {"cluster": "'$(echo $context_cluster)'", "user": "'$(echo $context_user)'"}, "name": "'$(echo $name)'"}]')
+  # users
+  name=user$cluster
+  user_client_certificate_data=$(yq -c -r '.users[0].user."client-certificate-data"' /home/ubuntu/amko/config$cluster)
+  user_client_key_data=$(yq -c -r '.users[0].user."client-key-data"' /home/ubuntu/amko/config$cluster)
+  gslb_members_json=$(echo $gslb_members_json | jq '.users += [{"user": {"client-certificate-data": "'$(echo $user_client_certificate_data)'", "client-key-data": "'$(echo $user_client_key_data)'"}, "name": "'$(echo $name)'"}]')
+done
+echo $gslb_members_json | yq -y . | tee $localFile > /dev/null
+#
+# Create values_amko.yml
+for cluster in $(seq 1 ${cluster})
+#for cluster in $(seq 1 2)
+do
+  values_amko="{}"
+  values_amko=$(echo $values_amko | jq '. += {"replicaCount": 1}')
+  values_amko=$(echo $values_amko | jq '. += {"image": {"repository": "projects.registry.vmware.com/ako/amko", "pullPolicy": "IfNotPresent"}}')
+  values_amko=$(echo $values_amko | jq '. += {"federation": {"image": {"repository": "projects.registry.vmware.com/ako/amko-federator", "pullPolicy": "IfNotPresent"}}}')
+  currentCluster=context$cluster
+  values_amko=$(echo $values_amko | jq '.federation += {"currentCluster": "'$(echo $currentCluster)'"}')
+  if [[ $cluster -eq 1 ]] ; then currentClusterIsLeader=true ; else currentClusterIsLeader=false; fi
+  values_amko=$(echo $values_amko | jq '.federation += {"currentClusterIsLeader": '$(echo $currentClusterIsLeader)'}')
+  values_amko=$(echo $values_amko | jq '.federation += {"memberClusters": []}')
+  #for memberClusters in $(seq 1 ${cluster})
+  for memberClusters in $(seq 1 2)
+  do
+    values_amko=$(echo $values_amko | jq '.federation.memberClusters += [ "context'$memberClusters'"]')
+  done
+  values_amko=$(echo $values_amko | jq '. += {"serviceDiscovery": {"image": {"repository": "projects.registry.vmware.com/ako/amko-service-discovery", "pullPolicy": "IfNotPresent"}}}')
+  values_amko=$(echo $values_amko | jq '. += {"multiClusterIngress": {"enable": false}}')
+  values_amko=$(echo $values_amko | jq '. += {"replicaCount": 1}')
+  # .configs
+#  values_amko=$(echo $values_amko | jq '. += {"configs": {"gslbLeaderController": "10.41.134.130"}}') # to be replaced
+  values_amko=$(echo $values_amko | jq '. += {"configs": {"gslbLeaderController": "${controller_ip}"}}')
+#  values_amko=$(echo $values_amko | jq '.configs += {"controllerVersion": "22.1.3"}') # to be replaced
+  values_amko=$(echo $values_amko | jq '.configs += {"controllerVersion": "${avi_version}"}')
+  values_amko=$(echo $values_amko | jq '.configs += {"memberClusters": []}')
+  #for memberClusters in $(seq 1 ${cluster})
+  for memberClusters in $(seq 1 2)
+  do
+    values_amko=$(echo $values_amko | jq '.configs.memberClusters += [ {"clusterContext": "context'$memberClusters'"}]')
+  done
+  values_amko=$(echo $values_amko | jq '.configs += {"refreshInterval": 1800}')
+  values_amko=$(echo $values_amko | jq '.configs += {"logLevel": "INFO"}')
+  values_amko=$(echo $values_amko | jq '.configs += {"logLevel": "INFO"}')
+  values_amko=$(echo $values_amko | jq '.configs += {"useCustomGlobalFqdn": true}')
+  # .gslbLeaderCredentials
+  values_amko=$(echo $values_amko | jq '. += {"gslbLeaderCredentials": {"username": "admin"}}')
+#  values_amko=$(echo $values_amko | jq '.gslbLeaderCredentials += {"password": ""}') # to be replaced
+  values_amko=$(echo $values_amko | jq '.gslbLeaderCredentials += {"password": "${avi_password}"}')
+  # .globalDeploymentPolicy
+#  values_amko=$(echo $values_amko | jq '. += {"globalDeploymentPolicy": {"appSelector": {"label": {"app": "gslb"}}}}') # to be replaced
+  values_amko=$(echo $values_amko | jq '. += {"globalDeploymentPolicy": {"appSelector": {"label": {"app": "${app_selector}"}}}}')
+  values_amko=$(echo $values_amko | jq '.globalDeploymentPolicy += {"matchClusters": []}')
+  for matchClusters in $(seq 1 2)
+  do
+    values_amko=$(echo $values_amko | jq '.globalDeploymentPolicy.matchClusters += [ {"cluster": "context'$matchClusters'"}]')
+  done
+  # .serviceAccount
+  values_amko=$(echo $values_amko | jq '. += {"serviceAccount": {"create": true}}')
+  values_amko=$(echo $values_amko | jq '.serviceAccount += {"annotations": {}}')
+  values_amko=$(echo $values_amko | jq '.serviceAccount += {"name": ""}')
+  # .resources
+  values_amko=$(echo $values_amko | jq '. += {"resources": {"limits": {"cpu": "250m", "memory": "300Mi"}}}')
+  values_amko=$(echo $values_amko | jq '.resources += {"requests": {"cpu": "100m", "memory": "200Mi"}}')
+  # .service
+  values_amko=$(echo $values_amko | jq '. += {"service": {"type": "ClusterIP", "port": 80}}')
+  # .rbac
+  values_amko=$(echo $values_amko | jq '. += {"rbac": {"pspEnable": false}}')
+  # .persistentVolumeClaim
+  values_amko=$(echo $values_amko | jq '. += {"persistentVolumeClaim": ""}')
+  # .mountPath
+  values_amko=$(echo $values_amko | jq '. += {"mountPath": "/log"}')
+  # .logFile
+  values_amko=$(echo $values_amko | jq '. += {"logFile": "amko.log"}')
+  # .federatorLogFile
+  values_amko=$(echo $values_amko | jq '. += {"federatorLogFile": "amko-federator.log"}')
+  #
+  echo $values_amko | yq -y . | tee /home/ubuntu/amko/values_amko$cluster.yml > /dev/null
+done

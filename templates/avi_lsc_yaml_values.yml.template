@@ -1,0 +1,23 @@
+seLsc: |
+  ${seLsc}
+controller: |
+  ${controller}
+controllerPrivateIps: |
+  ${controller_ips}
+avi_password: ${avi_password}
+avi_version: ${avi_version}
+avi_username: ${avi_username}
+avi_servers_lsc: |
+  ${avi_servers_lsc}
+lsc:
+  name: ${cloud_name}
+  network_vip: |
+    ${network_vip}
+  domains: |
+    ${domains}
+  serviceEngineGroup: |
+    ${serviceEngineGroup}
+  pool: |
+    ${pool}
+  virtual_services: |
+    ${virtual_services}
