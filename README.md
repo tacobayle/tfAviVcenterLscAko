@@ -12,7 +12,7 @@ Spin up a full vCenter/LSC/Avi/AKO environment (through Terraform) with:
 - ubuntu-xenial-16.04-cloudimg-template (which can be downloaded here: http://cloud-images-archive.ubuntu.com/releases/xenial/release-20180105/ubuntu-16.04-server-cloudimg-amd64.ova)
 - ubuntu-bionic-18.04-cloudimg-template
 - ubuntu-focal-20.04-cloudimg-template
-- controller-22.1.3-9096-template
+- controller-22.1.4-9196-template
 ```
 - SSH key public and private available defined in jump.public_key_path and jump.private_key_path
 
