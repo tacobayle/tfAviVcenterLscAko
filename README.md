@@ -76,6 +76,6 @@ while true ; do ab -n 1000 -c 1000 https://100.64.133.51/ ; done
 
 ## Run terraform:
 ```
-cd ~ ; rm -fr tfVmwAviVcenterLscAko ; git clone https://github.com/tacobayle/tfVmwAviVcenterLscAko ; cd tfVmwAviVcenterLscAko ; terraform init ; terraform apply -auto-approve -var-file=avi.json
+cd ~ ; rm -fr tfVmwAviVcenterLscAko ; git clone https://github.com/tacobayle/tfAviVcenterLscAko ; cd tfAviVcenterLscAko ; terraform init ; terraform apply -auto-approve -var-file=avi.json
 # the terraform will output the command to destroy the environment something like:
 ```
