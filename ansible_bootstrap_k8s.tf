@@ -1,4 +1,5 @@
 resource "null_resource" "ansible_hosts_cluster_master" {
+  depends_on = [vsphere_virtual_machine.master, vsphere_virtual_machine.worker]
   count            = length(var.vmw.kubernetes.clusters)
   provisioner "local-exec" {
     command = "echo '---' | tee hosts_cluster_${count.index} ; echo 'all:' | tee -a hosts_cluster_${count.index} ; echo '  children:' | tee -a hosts_cluster_${count.index}; echo '    master:' | tee -a hosts_cluster_${count.index}; echo '      hosts:' | tee -a hosts_cluster_${count.index} ; echo '        ${vsphere_virtual_machine.master[count.index].default_ip_address}:' | tee -a hosts_cluster_${count.index}"
