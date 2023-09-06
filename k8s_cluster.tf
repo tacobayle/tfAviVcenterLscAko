@@ -127,7 +127,7 @@ resource "null_resource" "ako_prerequisites" {
       "mkdir amko",
       "echo \"avi_password=${var.avi_password}\" | sudo tee -a /home/ubuntu/.profile",
       "echo \"alias k=kubectl\" | sudo tee -a /home/ubuntu/.profile",
-      "helm repo add ako ${var.vmw.kubernetes.clusters[count.index].ako.helm.url}",
+#      "helm repo add ako ${var.vmw.kubernetes.clusters[count.index].ako.helm.url}",
       "kubectl create secret docker-registry docker --docker-server=docker.io --docker-username=${var.docker_registry_username} --docker-password=${var.docker_registry_password} --docker-email=${var.docker_registry_email}",
       "kubectl patch serviceaccount default -p \"{\\\"imagePullSecrets\\\": [{\\\"name\\\": \\\"docker\\\"}]}\"",
       "kubectl create ns ${var.vmw.kubernetes.clusters[count.index].ako.namespace}",

@@ -186,7 +186,7 @@ variable "vmw" {
             namespace = "avi-system"
             version = "1.10.1"
             helm = {
-              url = "https://projects.registry.vmware.com/chartrepo/ako"
+              url = "oci://projects.registry.vmware.com/ako/helm-charts/ako"
             }
             values = {
               AKOSettings = {
