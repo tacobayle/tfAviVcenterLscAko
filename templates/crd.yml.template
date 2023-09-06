@@ -12,3 +12,8 @@ spec:
       sslKeyCertificate:
         name: System-Default-Cert-EC
         type: ref
+    analyticsPolicy: # optional
+      fullClientLogs:
+        enabled: true
+        throttle: HIGH
+      logAllHeaders: true
