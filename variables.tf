@@ -155,7 +155,7 @@ variable "vmw" {
       }
       amko = {
         app_selector = "gslb"
-        version = "1.7.1"
+        version = "1.10.1"
         gslb_domain = "gslb.alb.com"
         deploy = false
       }

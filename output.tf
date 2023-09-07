@@ -65,7 +65,7 @@ output "ako_install" {
 }
 
 output "amko_install" {
-  value = "helm install  ako/amko  --generate-name --version ${var.vmw.kubernetes.amko.version} -f /home/ubuntu/amko/values_amko.yml  --namespace=avi-system\n"
+  value = "helm install --generate-name oci://projects.registry.vmware.com/ako/helm-charts/amko  --version ${var.vmw.kubernetes.amko.version} -f /home/ubuntu/amko/values_amko.yml  --namespace=avi-system\n"
 }
 
 output "curl_header_command" {

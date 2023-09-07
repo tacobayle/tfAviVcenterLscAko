@@ -147,7 +147,7 @@ resource "null_resource" "install_amko" {
 
   provisioner "remote-exec" {
     inline = [
-      "helm install  ako/amko  --generate-name --version ${var.vmw.kubernetes.amko.version} -f /home/ubuntu/amko/values_amko.yml  --namespace=avi-system"
+      "helm install --generate-name oci://projects.registry.vmware.com/ako/helm-charts/amko  --version ${var.vmw.kubernetes.amko.version} -f /home/ubuntu/amko/values_amko.yml  --namespace=avi-system"
     ]
   }
 }
