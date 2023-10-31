@@ -97,40 +97,19 @@ resource "null_resource" "clear_ssh_key_clients" {
 }
 
 
-resource "null_resource" "traffic_gen1" {
-  provisioner "local-exec" {
-    command = "echo '#!/bin/bash' | tee traffic_gen.sh"
+data "template_file" "traffic_gen" {
+  template = file("templates/traffic_gen.sh.template")
+  vars = {
+    controllerPrivateIp = jsonencode(vsphere_virtual_machine.controller[0].default_ip_address)
+    avi_password = jsonencode(var.avi_password)
+    avi_username = "admin"
   }
 }
 
-resource "null_resource" "traffic_gen_vcenter_1" {
-  depends_on = [null_resource.traffic_gen1]
-  count = length(var.avi.config.vcenter.virtual_services.http)
-  provisioner "local-exec" {
-    command = "echo 'for i in {1..20}; do curl -k https://${var.avi.config.vcenter.virtual_services.http[count.index].name}.${var.avi.config.vcenter.domains[0].name}; sleep 0.5 ; done' | tee -a traffic_gen.sh"
-  }
-}
-
-resource "null_resource" "traffic_gen_vcenter_2" {
-  depends_on = [null_resource.traffic_gen_vcenter_1]
-  provisioner "local-exec" {
-    command = "echo 'for i in {1..30}; do curl -k https://${var.avi.config.vcenter.virtual_services.http[length(var.avi.config.vcenter.virtual_services.http) - 1 ].name}.${var.avi.config.vcenter.domains[0].name}/wrongpath; sleep 0.5 ; done' | tee -a traffic_gen.sh"
-  }
-}
-
-resource "null_resource" "traffic_gen_lsc" {
-  depends_on = [null_resource.traffic_gen_vcenter_2]
-  count      = length(var.avi.config.lsc.virtualservices.http)
-
-  provisioner "local-exec" {
-    command = "echo 'for i in {1..10}; do curl -k https://${var.avi.config.lsc.virtualservices.http[count.index].name}.${var.avi.config.lsc.domains[0].name}; sleep 0.5 ; done' | tee -a traffic_gen.sh"
-  }
-
-}
 
 resource "null_resource" "traffic_gen_copy" {
   count = var.client.count
-  depends_on = [null_resource.traffic_gen_lsc]
+  depends_on = [vsphere_virtual_machine.client]
 
   connection {
     host        = vsphere_virtual_machine.client[count.index].default_ip_address
@@ -141,12 +120,24 @@ resource "null_resource" "traffic_gen_copy" {
   }
 
   provisioner "file" {
-    source      = "traffic_gen.sh"
+    source      = "loopback_ips.json"
+    destination = "loopback_ips.json"
+  }
+
+  provisioner "file" {
+    source      = "user_agents.json"
+    destination = "user_agents.json"
+  }
+
+  provisioner "file" {
+    content      = data.template_file.traffic_gen.rendered
     destination = "traffic_gen.sh"
   }
 
+
   provisioner "remote-exec" {
     inline = [
+      "jq -c -r '.[]' loopback_ips.json | while read ip ; do sudo ip a add $ip dev lo: ; done",
       "chmod u+x /home/${var.client.username}/traffic_gen.sh",
       "(crontab -l 2>/dev/null; echo \"* * * * * /home/${var.client.username}/traffic_gen.sh\") | crontab -"
     ]

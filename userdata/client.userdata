@@ -40,6 +40,7 @@ write_files:
       sleep 20
       sudo apt update
       sudo apt-get install -y apache2-utils
+      sudo apt-get install -y jq
       echo "network:" | sudo tee ${netplanFile}
       echo "    ethernets:" | sudo tee -a ${netplanFile}
       echo "        $ifaceFirstName:" | sudo tee -a ${netplanFile}
