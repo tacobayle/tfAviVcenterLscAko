@@ -385,7 +385,7 @@
                 "enabled": true
               },
             "vcenter_folder": "nic-vmw-demo",
-            "vcpus_per_se": 1
+            "vcpus_per_se": 2
           },
           {
             "auto_rebalance": true,
@@ -408,7 +408,7 @@
                 "enabled": true
               },
             "vcenter_folder": "nic-vmw-demo",
-            "vcpus_per_se": 1
+            "vcpus_per_se": 2
           },
           {
             "buffer_se": 0,
@@ -424,7 +424,7 @@
                 "enabled": true
               },
             "vcenter_folder": "nic-vmw-demo",
-            "vcpus_per_se": 1
+            "vcpus_per_se": 2
           }
         ],
         "pools": [
