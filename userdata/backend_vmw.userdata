@@ -49,7 +49,7 @@ write_files:
       ifaceFirstIp=`ip address show dev $ifaceFirstName | awk -F'inet ' '{print $2}' |  awk -F'/' '{print $1}'`
       echo -e "Hello World - cloud is vCenter/ESXi - Version 1.0 - Node is $(hostname) - IP is $(ip address show dev $(ip -o link show | awk -F': ' '{print $2}' | tail -1) | awk -F'inet ' '{print $2}' |  awk -F'/' '{print $1}' | tr -d '\n')" | sudo tee /var/www/html/index.html
       mkdir -p /var/www/html/gslb
-      echo -e "Hello World - This is DC1 - Cloud is vCenter/ESXi - IP is $(ip address show dev $(ip -o link show | awk -F': ' '{print $2}' | tail -1) | awk -F'inet ' '{print $2}' |  awk -F'/' '{print $1}' | tr -d '\n')" | sudo tee /var/www/html/gslb/index.html
+      echo -e "Hello World - This is DC1/London - Cloud is vCenter/ESXi - Server IP is $(ip address show dev $(ip -o link show | awk -F': ' '{print $2}' | tail -1) | awk -F'inet ' '{print $2}' |  awk -F'/' '{print $1}' | tr -d '\n')" | sudo tee /var/www/html/gslb/index.html
       sudo apt install -y docker.io
       sudo usermod -a -G docker ${username}
       su - ${username}
