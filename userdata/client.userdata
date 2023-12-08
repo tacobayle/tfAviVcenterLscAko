@@ -26,6 +26,9 @@ write_files:
       echo "    ethernets:" | sudo tee -a ${netplanFile}
       echo "        $ifaceFirstName:" | sudo tee -a ${netplanFile}
       echo "            dhcp4: true" | sudo tee -a ${netplanFile}
+      echo "            routes:" | sudo tee -a ${netplanFile}
+      echo "            - to: 100.100.131.0/24" | sudo tee -a ${netplanFile}
+      echo "              via: 10.41.134.170" | sudo tee -a ${netplanFile}
       echo "            match:" | sudo tee -a ${netplanFile}
       echo "                macaddress: $macFirst" | sudo tee -a ${netplanFile}
       echo "            set-name: $ifaceFirstName" | sudo tee -a ${netplanFile}
