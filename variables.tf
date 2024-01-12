@@ -36,7 +36,7 @@ variable "controller" {
     disk = 256
     cluster = true
     floating_ip = "10.41.134.130"
-    version = "22.1.4-9196"
+    version = "22.1.5-9093"
     wait_for_guest_net_timeout = 4
     private_key_path = "~/.ssh/cloudKey"
     dns =  ["10.23.108.1", "10.23.108.2"]
@@ -61,7 +61,7 @@ variable "jump" {
     private_key_path = "~/.ssh/cloudKey"
     wait_for_guest_net_timeout = 2
     template_name = "ubuntu-focal-20.04-cloudimg-template"
-    avisdkVersion = "22.1.4"
+    avisdkVersion = "22.1.5"
     username = "ubuntu"
   }
 }
