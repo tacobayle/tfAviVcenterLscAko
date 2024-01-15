@@ -77,7 +77,7 @@ variable "ansible" {
       ansible-core = "2.12.5"
     }
     k8sInstallUrl = "https://github.com/tacobayle/ansibleK8sInstall"
-    k8sInstallTag = "v1.7"
+    k8sInstallTag = "v1.73"
   }
 }
 
