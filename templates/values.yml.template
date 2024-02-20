@@ -57,6 +57,9 @@ ControllerSettings:
   controllerHost: ${controllerHost} # IP address or Hostname of Avi Controller
   tenantName: ${tenantName} # Name of the tenant where all the AKO objects will be created in AVI. // Required only if tenantsPerCluster is set to True
 
+featureGates:
+  GatewayAPI: true
+
 nodePortSelector: # Only applicable if serviceType is NodePort
   key: ""
   value: ""
