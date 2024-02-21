@@ -184,7 +184,7 @@ variable "vmw" {
           ]
           ako = {
             namespace = "avi-system"
-            version = "1.10.1"
+            version = "1.11.1"
             helm = {
               url = "oci://projects.registry.vmware.com/ako/helm-charts/ako"
             }
@@ -253,7 +253,7 @@ variable "vmw" {
           ]
           ako = {
             namespace = "avi-system"
-            version = "1.10.1"
+            version = "1.11.1"
             helm = {
               url = "https://projects.registry.vmware.com/chartrepo/ako"
             }
