@@ -77,7 +77,7 @@ variable "ansible" {
       ansible-core = "2.12.5"
     }
     k8sInstallUrl = "https://github.com/tacobayle/ansibleK8sInstall"
-    k8sInstallTag = "v1.73"
+    k8sInstallTag = "v1.74"
   }
 }
 
@@ -170,7 +170,7 @@ variable "vmw" {
           name = "cluster1" # cluster name
           netplanApply = true
           username = "ubuntu" # default username dor docker and to connect
-          version = "1.26.6-00" # k8s version
+          version = "v1.28.1-1.1" # k8s version
           namespaces = [
             {
               name= "ns1"
@@ -239,7 +239,7 @@ variable "vmw" {
           name = "cluster2"
           netplanApply = true
           username = "ubuntu"
-          version = "1.26.6-00"
+          version = "v1.28.1-1.1"
           namespaces = [
             {
               name= "ns1"
