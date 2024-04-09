@@ -45,6 +45,7 @@ variable "controller" {
     tenant_access_to_provider_se = "true"
     tenant_vrf = "false"
     aviCredsJsonFile = "~/.avicreds.json"
+    public_key_path = "~/.ssh/cloudKey.pub"
   }
 }
 
