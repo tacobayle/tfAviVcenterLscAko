@@ -34,7 +34,7 @@ variable "controller" {
     disk = 128
     cluster = true
     version = "22.1.5-9093"
-    floatingIp = "10.206.112.58"
+    floating_ip = "10.206.112.58"
     wait_for_guest_net_timeout = 2
     private_key_path = "~/.ssh/cloudKey"
     environment = "VMWARE"
