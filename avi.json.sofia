@@ -260,7 +260,7 @@
         ],
         "networks": {
           "network_vip": {
-            "cidr": "100.64.133.0/24",
+            "cidr": "100.64.131.0/24",
             "ipEndPool": "110",
             "ipStartPool": "100",
             "name": "net-lsc-vip",
@@ -278,13 +278,13 @@
           "count": 2,
           "networks": [
             {
-              "name": "vxw-dvs-34-virtualwire-3-sid-6120002-wdc-06-vc12-avi-mgmt"
+              "name": "vxw-dvs-34-virtualwire-3-sid-1080002-sof2-01-vc08-avi-mgmt"
             },
             {
-              "name": "vxw-dvs-34-virtualwire-116-sid-6120115-wdc-06-vc12-avi-dev112"
+              "name": "vxw-dvs-34-virtualwire-117-sid-1080116-sof2-01-vc08-avi-dev113"
             },
             {
-              "name": "vxw-dvs-34-virtualwire-120-sid-6120119-wdc-06-vc12-avi-dev116"
+              "name": "vxw-dvs-34-virtualwire-118-sid-1080117-sof2-01-vc08-avi-dev114"
             }
           ],
           "username": "ubuntu",
@@ -344,27 +344,27 @@
             {
               "dhcp_enabled": "true",
               "exclude_discovered_subnets": "true",
-              "name": "vxw-dvs-34-virtualwire-3-sid-6120002-wdc-06-vc12-avi-mgmt",
+              "name": "vxw-dvs-34-virtualwire-3-sid-1080002-sof2-01-vc08-avi-mgmt",
               "type": "V4",
               "vcenter_dvs": "true"
             },
           "network_backend":
             {
-              "cidr": "100.64.129.0/24",
+              "cidr": "100.64.130.0/24",
               "dhcp_enabled": "yes",
               "exclude_discovered_subnets": "true",
-              "name": "vxw-dvs-34-virtualwire-116-sid-6120115-wdc-06-vc12-avi-dev112",
+              "name": "vxw-dvs-34-virtualwire-117-sid-1080116-sof2-01-vc08-avi-dev113",
               "type": "V4",
               "vcenter_dvs": "true"
             },
           "network_vip":
             {
-              "cidr": "100.64.133.0/24",
+              "cidr": "100.64.131.0/24",
               "dhcp_enabled": "no",
               "exclude_discovered_subnets": "true",
               "ipEndPool": "99",
               "ipStartPool": "50",
-              "name": "vxw-dvs-34-virtualwire-120-sid-6120119-wdc-06-vc12-avi-dev116",
+              "name": "vxw-dvs-34-virtualwire-118-sid-1080117-sof2-01-vc08-avi-dev114",
               "type": "V4",
               "vcenter_dvs": "true"
             }
@@ -433,24 +433,24 @@
             "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN",
             "default_server_port": 80,
             "avi_app_server_ips": [
-              "100.64.129.203",
-              "100.64.129.204"
+              "100.64.130.203",
+              "100.64.130.204"
             ]
           },
           {
             "name": "pool2-vmw-avi",
             "default_server_port": 8080,
             "avi_app_server_ips": [
-              "100.64.129.203",
-              "100.64.129.204"
+              "100.64.130.203",
+              "100.64.130.204"
             ]
           },
           {
             "name": "pool3-vmw-waf",
             "default_server_port": 8081,
             "avi_app_server_ips": [
-              "100.64.129.203",
-              "100.64.129.204"
+              "100.64.130.203",
+              "100.64.130.204"
             ]
           },
           {
@@ -458,8 +458,8 @@
             "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN",
             "default_server_port": 80,
             "avi_app_server_ips": [
-              "100.64.129.203",
-              "100.64.129.204"
+              "100.64.130.203",
+              "100.64.130.204"
             ]
           },
           {
@@ -467,8 +467,8 @@
             "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN",
             "default_server_port": 80,
             "avi_app_server_ips": [
-              "100.64.129.207",
-              "100.64.129.208"
+              "100.64.130.207",
+              "100.64.130.208"
             ]
           },
           {
@@ -478,8 +478,8 @@
             "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN",
             "default_server_port": 80,
             "avi_app_server_ips": [
-              "100.64.129.203",
-              "100.64.129.204"
+              "100.64.130.203",
+              "100.64.130.204"
             ]
           },
           {
@@ -489,8 +489,8 @@
             "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN",
             "default_server_port": 80,
             "avi_app_server_ips": [
-              "100.64.129.203",
-              "100.64.129.204"
+              "100.64.130.203",
+              "100.64.130.204"
             ]
           },
           {
@@ -500,8 +500,8 @@
             "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN",
             "default_server_port": 80,
             "avi_app_server_ips": [
-              "100.64.129.203",
-              "100.64.129.204"
+              "100.64.130.203",
+              "100.64.130.204"
             ]
           },
           {
@@ -511,8 +511,8 @@
             "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN",
             "default_server_port": 80,
             "avi_app_server_ips": [
-              "100.64.129.203",
-              "100.64.129.204"
+              "100.64.130.203",
+              "100.64.130.204"
             ]
           },
           {
@@ -522,8 +522,8 @@
             "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN",
             "default_server_port": 80,
             "avi_app_server_ips": [
-              "100.64.129.203",
-              "100.64.129.204"
+              "100.64.130.203",
+              "100.64.130.204"
             ]
           },
           {
@@ -533,8 +533,8 @@
             "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN",
             "default_server_port": 80,
             "avi_app_server_ips": [
-              "100.64.129.203",
-              "100.64.129.204"
+              "100.64.130.203",
+              "100.64.130.204"
             ]
           },
           {
@@ -544,8 +544,8 @@
             "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN",
             "default_server_port": 80,
             "avi_app_server_ips": [
-              "100.64.129.203",
-              "100.64.129.204"
+              "100.64.130.203",
+              "100.64.130.204"
             ]
           },
           {
@@ -555,8 +555,8 @@
             "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN",
             "default_server_port": 80,
             "avi_app_server_ips": [
-              "100.64.129.203",
-              "100.64.129.204"
+              "100.64.130.203",
+              "100.64.130.204"
             ]
           },
           {
@@ -566,8 +566,8 @@
             "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN",
             "default_server_port": 80,
             "avi_app_server_ips": [
-              "100.64.129.203",
-              "100.64.129.204"
+              "100.64.130.203",
+              "100.64.130.204"
             ]
           }
         ],
