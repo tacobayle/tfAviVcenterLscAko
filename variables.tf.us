@@ -13,6 +13,8 @@ variable "docker_registry_email" {}
 #
 # Other Variables
 #
+variable "avi" {}
+#
 variable "vcenter" {
   type = map
   default = {
