@@ -81,20 +81,6 @@ resource "vsphere_virtual_machine" "master" {
       user-data   = base64encode(data.template_file.master_userdata[count.index].rendered)
     }
   }
-
-  connection {
-    host        = self.default_ip_address
-    type        = "ssh"
-    agent       = false
-    user        = var.vmw.kubernetes.clusters[count.index].username
-    private_key = file(var.jump.private_key_path)
-  }
-
-  provisioner "remote-exec" {
-    inline      = [
-      "while [ ! -f /tmp/cloudInitDone.log ]; do sleep 1; done"
-    ]
-  }
 }
 
 resource "null_resource" "clear_ssh_key_masters" {
