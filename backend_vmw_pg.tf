@@ -1,12 +1,12 @@
 data "template_file" "backend_vmw_pg_userdata" {
-  count = length(var.backend_vmw_pg.ipsData)
+  count = length(var.vcenter.backend_ips_pg)
   template = file("${path.module}/userdata/backend_vmw_pg.userdata")
   vars = {
     username     = var.backend_vmw_pg.username
     pubkey       = file(var.jump["public_key_path"])
     netplanFile  = var.backend_vmw_pg["netplanFile"]
     maskData = var.backend_vmw_pg.maskData
-    ipData      = element(var.backend_vmw_pg.ipsData, count.index)
+    ipData      = element(var.vcenter.backend_ips_pg, count.index)
     url_demovip_server = var.backend_vmw_pg.url_demovip_server
     docker_registry_username = var.docker_registry_username
     docker_registry_password = var.docker_registry_password
@@ -19,7 +19,7 @@ data "vsphere_virtual_machine" "backend_vmw_pg" {
 }
 
 resource "vsphere_virtual_machine" "backend_vmw_pg" {
-  count = length(var.backend_vmw_pg.ipsData)
+  count = length(var.vcenter.backend_ips_pg)
   name             = "backend_vmw_pg-${count.index}"
   datastore_id     = data.vsphere_datastore.datastore.id
   resource_pool_id = data.vsphere_resource_pool.pool.id
@@ -85,7 +85,7 @@ resource "vsphere_virtual_machine" "backend_vmw_pg" {
 }
 
 resource "null_resource" "clear_ssh_key_backend_vmw_pg" {
-  count = length(var.backend_vmw_pg.ipsData)
+  count = length(var.vcenter.backend_ips_pg)
   provisioner "local-exec" {
     command = "ssh-keygen -f \"/home/ubuntu/.ssh/known_hosts\" -R \"${vsphere_virtual_machine.backend_vmw_pg[count.index].default_ip_address}\" || true"
   }

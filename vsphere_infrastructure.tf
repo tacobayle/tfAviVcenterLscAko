@@ -35,12 +35,12 @@ data "vsphere_network" "networkWorker" {
 }
 
 data "vsphere_network" "networkBackendVmw" {
-  name = var.backend_vmw["network"]
+  name = var.vcenter.backend_network
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
 data "vsphere_network" "networkBackendLsc" {
-  name = var.backend_lsc["network"]
+  name = var.vcenter.backend_lsc_network
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
@@ -60,7 +60,7 @@ data "vsphere_network" "networkBackendLsc" {
 //}
 
 data "vsphere_network" "networkClient" {
-  name = var.client["network"]
+  name = var.vcenter.client_network
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 

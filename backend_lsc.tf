@@ -4,14 +4,14 @@ resource "vsphere_tag" "ansible_group_backend" {
 }
 
 data "template_file" "backend_lsc_userdata" {
-  count = length(var.backend_lsc.ipsData)
+  count = length(var.vcenter.backend_lsc_ips)
   template = file("${path.module}/userdata/backend_lsc.userdata")
   vars = {
     username     = var.backend_lsc.username
     pubkey       = file(var.jump["public_key_path"])
     netplanFile  = var.backend_lsc["netplanFile"]
     maskData = var.backend_lsc.maskData
-    ipData      = element(var.backend_lsc.ipsData, count.index)
+    ipData      = element(var.vcenter.backend_lsc_ips, count.index)
   }
 }
 
@@ -21,7 +21,7 @@ data "vsphere_virtual_machine" "backend_lsc" {
 }
 
 resource "vsphere_virtual_machine" "backend_lsc" {
-  count = length(var.backend_lsc.ipsData)
+  count = length(var.vcenter.backend_lsc_ips)
   name             = "backend_lsc-${count.index}"
   datastore_id     = data.vsphere_datastore.datastore.id
   resource_pool_id = data.vsphere_resource_pool.pool.id
@@ -87,7 +87,7 @@ resource "vsphere_virtual_machine" "backend_lsc" {
 }
 
 resource "null_resource" "clear_ssh_key_backend_lsc" {
-  count = length(var.backend_lsc.ipsData)
+  count = length(var.vcenter.backend_lsc_ips)
   provisioner "local-exec" {
     command = "ssh-keygen -f \"/home/ubuntu/.ssh/known_hosts\" -R \"${vsphere_virtual_machine.backend_lsc[count.index].default_ip_address}\" || true"
   }

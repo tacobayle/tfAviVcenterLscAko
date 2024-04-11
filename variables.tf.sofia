@@ -8,92 +8,19 @@ variable "vcenter" {
     resource_pool = "sof2-01-vc08c01/Resources"
     folder = "nic-vmw-demo"
     networkMgmt = "vxw-dvs-34-virtualwire-3-sid-1080002-sof2-01-vc08-avi-mgmt"
+    avi_ctrl_floating_ip = "10.41.134.130"
+    avi_ctrl_dns = ["10.23.108.1", "10.23.108.2"]
+    avi_ctrl_ntp = ["95.81.173.155", "188.165.236.162"]
+    backend_network = "vxw-dvs-34-virtualwire-117-sid-1080116-sof2-01-vc08-avi-dev113"
+    backend_ips = ["100.64.130.203", "100.64.130.204"]
+    backend_ips_pg = ["100.64.130.207", "100.64.130.208"]
+    backend_lsc_network = "vxw-dvs-34-virtualwire-117-sid-1080116-sof2-01-vc08-avi-dev113"
+    backend_lsc_ips = ["100.64.130.205", "100.64.130.206"]
+    client_network = "vxw-dvs-34-virtualwire-118-sid-1080117-sof2-01-vc08-avi-dev114"
+    client_ips = ["100.64.131.11", "100.64.131.12", "100.64.131.13"]
   }
 }
 
-variable "controller" {
-  default = {
-    cpu = 16
-    memory = 32768
-    disk = 256
-    cluster = true
-    floating_ip = "10.41.134.130"
-    version = "22.1.5-9093"
-    wait_for_guest_net_timeout = 4
-    private_key_path = "~/.ssh/cloudKey"
-    dns =  ["10.23.108.1", "10.23.108.2"]
-    ntp = ["95.81.173.155", "188.165.236.162"]
-    from_email = "avicontroller@avidemo.fr"
-    se_in_provider_context = "true" # true is required for LSC Cloud
-    tenant_access_to_provider_se = "true"
-    tenant_vrf = "false"
-    aviCredsJsonFile = "~/.avicreds.json"
-    public_key_path = "~/.ssh/cloudKey.pub"
-  }
-}
-
-variable "backend_vmw" {
-  default = {
-    cpu = 2
-    memory = 4096
-    disk = 20
-    username = "ubuntu"
-    network = "vxw-dvs-34-virtualwire-117-sid-1080116-sof2-01-vc08-avi-dev113"
-    wait_for_guest_net_timeout = 2
-    template_name = "ubuntu-bionic-18.04-cloudimg-template"
-    ipsData = ["100.64.130.203", "100.64.130.204"]
-    netplanFile = "/etc/netplan/50-cloud-init.yaml"
-    maskData = "/24"
-    url_demovip_server = "https://github.com/tacobayle/demovip_server"
-  }
-}
-
-variable "backend_vmw_pg" {
-  default = {
-    cpu = 2
-    memory = 4096
-    disk = 20
-    username = "ubuntu"
-    network = "vxw-dvs-34-virtualwire-117-sid-1080116-sof2-01-vc08-avi-dev113"
-    wait_for_guest_net_timeout = 2
-    template_name = "ubuntu-bionic-18.04-cloudimg-template"
-    ipsData = ["100.64.130.207", "100.64.130.208"]
-    netplanFile = "/etc/netplan/50-cloud-init.yaml"
-    maskData = "/24"
-    url_demovip_server = "https://github.com/tacobayle/demovip_server"
-  }
-}
-
-variable "backend_lsc" {
-  default = {
-    cpu = 2
-    memory = 4096
-    disk = 20
-    username = "ubuntu"
-    network = "vxw-dvs-34-virtualwire-117-sid-1080116-sof2-01-vc08-avi-dev113"
-    wait_for_guest_net_timeout = 2
-    template_name = "ubuntu-bionic-18.04-cloudimg-template"
-    ipsData = ["100.64.130.205", "100.64.130.206"]
-    netplanFile = "/etc/netplan/50-cloud-init.yaml"
-    maskData = "/24"
-  }
-}
-
-variable "client" {
-  default = {
-    cpu = 2
-    count = 3
-    memory = 4096
-    disk = 20
-    username = "ubuntu"
-    network = "vxw-dvs-34-virtualwire-118-sid-1080117-sof2-01-vc08-avi-dev114"
-    wait_for_guest_net_timeout = 2
-    template_name = "ubuntu-bionic-18.04-cloudimg-template"
-    netplanFile = "/etc/netplan/50-cloud-init.yaml"
-    ipsData = ["100.64.131.11", "100.64.131.12", "100.64.131.13"]
-    maskData = "/24"
-  }
-}
 
 variable "vmw" {
   default = {

@@ -4,14 +4,14 @@ resource "vsphere_tag" "ansible_group_backend_vmw" {
 }
 
 data "template_file" "backend_vmw_userdata" {
-  count = length(var.backend_vmw.ipsData)
+  count = length(var.vcenter.backend_ips)
   template = file("${path.module}/userdata/backend_vmw.userdata")
   vars = {
     username     = var.backend_vmw.username
     pubkey       = file(var.jump["public_key_path"])
     netplanFile  = var.backend_vmw["netplanFile"]
     maskData = var.backend_vmw.maskData
-    ipData      = element(var.backend_vmw.ipsData, count.index)
+    ipData      = element(var.vcenter.backend_ips, count.index)
     url_demovip_server = var.backend_vmw.url_demovip_server
     docker_registry_username = var.docker_registry_username
     docker_registry_password = var.docker_registry_password
@@ -24,7 +24,7 @@ data "vsphere_virtual_machine" "backend_vmw" {
 }
 
 resource "vsphere_virtual_machine" "backend_vmw" {
-  count = length(var.backend_vmw.ipsData)
+  count = length(var.vcenter.backend_ips)
   name             = "backend_vmw-${count.index}"
   datastore_id     = data.vsphere_datastore.datastore.id
   resource_pool_id = data.vsphere_resource_pool.pool.id
@@ -90,7 +90,7 @@ resource "vsphere_virtual_machine" "backend_vmw" {
 }
 
 resource "null_resource" "clear_ssh_key_backend_vmw" {
-  count = length(var.backend_vmw.ipsData)
+  count = length(var.vcenter.backend_ips)
   provisioner "local-exec" {
     command = "ssh-keygen -f \"/home/ubuntu/.ssh/known_hosts\" -R \"${vsphere_virtual_machine.backend_vmw[count.index].default_ip_address}\" || true"
   }

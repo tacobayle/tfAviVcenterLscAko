@@ -39,9 +39,9 @@ data "template_file" "avi_vcenter_yaml_values" {
   template = file("templates/avi_vcenter_yaml_values.yml.template")
   vars = {
     controller_ips = jsonencode(vsphere_virtual_machine.controller[*].default_ip_address)
-    controller_ntp = jsonencode(var.controller.ntp)
-    controller_dns = jsonencode(var.controller.dns)
-    floating_ip = var.controller.floating_ip
+    controller_ntp = jsonencode(var.vcenter.avi_ctrl_ntp)
+    controller_dns = jsonencode(var.vcenter.avi_ctrl_dns)
+    floating_ip = var.vcenter.avi_ctrl_floating_ip
     avi_password = var.avi_password
     aviCredsJsonFile = var.controller.aviCredsJsonFile
     avi_old_password = var.avi_old_password
@@ -82,7 +82,7 @@ data "template_file" "avi_lsc_yaml_values" {
     avi_password = var.avi_password
     avi_version = split("-", var.controller.version)[0]
     avi_username = var.avi_username
-    avi_servers_lsc = jsonencode(var.backend_lsc.ipsData)
+    avi_servers_lsc = jsonencode(var.vcenter.backend_lsc_ips)
     cloud_name = var.avi.config.lsc.name
     domains = jsonencode(var.avi.config.lsc.domains)
     network_vip = jsonencode(var.avi.config.lsc.networks.network_vip)
