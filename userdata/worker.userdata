@@ -80,6 +80,8 @@ write_files:
       #
       echo "cloud init done" | tee /tmp/cloudInitDone.log
       #
+      sleep 30
+      reboot
     path: /opt/bootstrap.sh
     permissions: 0755
 

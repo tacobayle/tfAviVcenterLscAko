@@ -84,6 +84,8 @@ write_files:
       #cni=${cni}
       #[ $cni == 'calico' ] && ( echo "CNI is Calico" ; docker pull calico/pod2daemon-flexvol:v3.17.2  ; docker pull calico/node:v3.17.2 ; docker pull calico/cni:v3.17.2 ; docker pull calico/kube-controllers:v3.17.2)
       echo "cloud init done" | tee /tmp/cloudInitDone.log
+      sleep 30
+      reboot
     path: /opt/bootstrap.sh
     permissions: 0755
 
