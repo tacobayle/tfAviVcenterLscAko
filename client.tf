@@ -11,7 +11,7 @@ data "template_file" "client_userdata" {
     pubkey       = file(var.jump["public_key_path"])
     netplanFile  = var.client.netplanFile
     maskData = var.client.maskData
-    ipData      = element(var.client.ipsData, count.index)
+    ipData      = element(var.vcenter.client_ips, count.index)
     avi_dns_vs = cidrhost(var.avi.config.vcenter.networks.network_vip.cidr, var.avi.config.vcenter.networks.network_vip.ipStartPool)
   }
 }
