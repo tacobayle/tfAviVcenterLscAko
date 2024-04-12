@@ -2,19 +2,6 @@
 # Other Variables
 #
 
-
-variable "vcenter" {
-  type = map
-  default = {
-    dc = "sof2-01-vc08"
-    cluster = "sof2-01-vc08c01"
-    datastore = "sof2-01-vc08c01-vsan"
-    resource_pool = "sof2-01-vc08c01/Resources"
-    folder = "nic-vmw-demo"
-    networkMgmt = "vxw-dvs-34-virtualwire-3-sid-1080002-sof2-01-vc08-avi-mgmt"
-  }
-}
-
 variable "vmw" {
   default = {
     kubernetes = {

@@ -1,6 +1,5 @@
 
 variable "vcenter" {
-  type = map
   default = {
     dc = "sof2-01-vc08"
     cluster = "sof2-01-vc08c01"
