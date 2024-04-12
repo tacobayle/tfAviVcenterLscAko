@@ -24,13 +24,13 @@ data "vsphere_network" "networkMgt" {
 
 data "vsphere_network" "networkMaster" {
   count = length(var.vmw.kubernetes.clusters)
-  name = var.vmw.kubernetes.clusters[count.index].master.network
+  name = var.vcenter.k8s_network
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
 data "vsphere_network" "networkWorker" {
   count = length(var.vmw.kubernetes.clusters) * var.vmw.kubernetes.workers.count
-  name = var.vmw.kubernetes.clusters[floor(count.index / var.vmw.kubernetes.workers.count)].worker.network
+  name = var.vcenter.k8s_network
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
