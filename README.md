@@ -1,4 +1,4 @@
-# tfVmwAviVcenterLscAko
+# tfAviVcenterLscAko
 
 ## Goals
 Spin up a full vCenter/LSC/Avi/AKO environment (through Terraform) with:
@@ -15,8 +15,6 @@ Spin up a full vCenter/LSC/Avi/AKO environment (through Terraform) with:
 - controller-22.1.5-9093-template
 ```
 - SSH key public and private available defined in jump.public_key_path and jump.private_key_path
-
-
 
 ## Environment:
 
@@ -40,7 +38,7 @@ TF_VAR_vsphere_username=******
 TF_VAR_vsphere_server=******
 TF_VAR_vsphere_password=******
 TF_VAR_avi_password=******
-TF_VAR_avi_user=admin
+TF_VAR_avi_username=admin
 TF_VAR_docker_registry_password=******
 TF_VAR_docker_registry_username=******
 TF_VAR_docker_registry_email=******
@@ -76,6 +74,6 @@ while true ; do ab -n 1000 -c 1000 https://100.64.133.51/ ; done
 
 ## Run terraform:
 ```
-cd ~ ; rm -fr tfVmwAviVcenterLscAko ; git clone https://github.com/tacobayle/tfAviVcenterLscAko ; cd tfAviVcenterLscAko ; terraform init ; terraform apply -auto-approve -var-file=avi.json
+cd ~ ; rm -fr tfAviVcenterLscAko ; git clone https://github.com/tacobayle/tfAviVcenterLscAko ; cd tfAviVcenterLscAko ; terraform init ; terraform apply -auto-approve -var-file=avi.json
 # the terraform will output the command to destroy the environment something like:
 ```
