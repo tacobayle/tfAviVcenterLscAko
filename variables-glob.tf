@@ -46,7 +46,7 @@ variable "ansible" {
 
 variable "controller" {
   default = {
-    cpu = 16
+    cpu = 6
     memory = 32768
     disk = 256
     cluster = true
