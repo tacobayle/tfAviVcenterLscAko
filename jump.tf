@@ -86,6 +86,16 @@ resource "vsphere_virtual_machine" "jump" {
     destination = "~/.ssh/${basename(var.jump["private_key_path"])}"
   }
 
+  provisioner "file" {
+    source      = "bash/cert-ca.sh"
+    destination = "cert-ca.sh"
+  }
+
+  provisioner "file" {
+    source      = "bash/cert-app.sh"
+    destination = "cert-app.sh"
+  }
+
   provisioner "remote-exec" {
     inline = [
       "chmod 600 ~/.ssh/${basename(var.jump.private_key_path)}"
