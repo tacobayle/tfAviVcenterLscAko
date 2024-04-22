@@ -40,7 +40,6 @@ output "syn_attack_command" {
   value = "sudo hping3 -c 500000 -d 120 -S -w 64 -p 443 --flood --rand-source app-security.vcenter.alb.com\n"
 }
 
-
 output "dos_command" {
   value = "requests=\"40\" ; concurrent=\"40\"; while true ; do echo \"sent    : $requests requests\" ; responses=$(ab -v 3 -n $requests -c $concurrent http://app-security.${var.avi.config.vcenter.domains[0].name}/ 2> /dev/null | grep \"LOG: Response code = 200\" | wc -l); echo \"received: $responses successful responses\" ; echo \"---\" ; sleep 1 ; done\n"
 }
