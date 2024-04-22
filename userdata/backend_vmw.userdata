@@ -44,6 +44,7 @@ write_files:
       sleep 20
       # apt config
       sudo apt update
+      sudo apt-get -y install hping3
       sudo apt install -y apache2
       sudo mv /var/www/html/index.html /var/www/html/index.html.old
       ifaceFirstIp=`ip address show dev $ifaceFirstName | awk -F'inet ' '{print $2}' |  awk -F'/' '{print $1}'`
