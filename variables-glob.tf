@@ -142,7 +142,7 @@ variable "vmw" {
       clusters = [
         {
           name = "cluster1" # cluster name
-          netplanApply = true
+          netplanApply = false
           username = "ubuntu" # default username dor docker and to connect
           version = "v1.28.1-1.1" # k8s version
           namespaces = [
@@ -209,7 +209,7 @@ variable "vmw" {
         },
         {
           name = "cluster2"
-          netplanApply = true
+          netplanApply = false
           username = "ubuntu"
           version = "v1.28.1-1.1"
           namespaces = [
