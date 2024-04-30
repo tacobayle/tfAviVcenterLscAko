@@ -7,4 +7,4 @@ rm -fr tfAviVcenterLscAko ; git clone https://github.com/tacobayle/tfAviVcenterL
 
 # us
 cd ~
-rm -fr tfAviVcenterLscAko ; git clone https://github.com/tacobayle/tfAviVcenterLscAko ; cd tfAviVcenterLscAko ; cp variables.tf.us variables.tf ; terraform init ; terraform apply -auto-approve -var-file=avi.json
+rm -fr tfAviVcenterLscAko ; git clone https://github.com/tacobayle/tfAviVcenterLscAko ; cd tfAviVcenterLscAko ; cp variables.tf.us variables.tf ; cp avi.json.us avi.json ; terraform init ; terraform apply -auto-approve -var-file=avi.json
