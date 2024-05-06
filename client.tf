@@ -12,7 +12,7 @@ data "template_file" "client_userdata" {
     netplanFile  = var.client.netplanFile
     maskData = var.client.maskData
     ipData      = element(var.vcenter.client_ips, count.index)
-    avi_dns_vs = cidrhost(var.avi.config.vcenter.networks.network_vip.cidr, var.avi.config.vcenter.networks.network_vip.ipStartPool)
+    avi_dns_vs = split("-", var.avi.config.vcenter.networks[1].avi_ipam_pool)[0]
   }
 }
 

@@ -6,9 +6,9 @@ data "template_file" "values" {
     disableStaticRouteSync = var.vmw.kubernetes.clusters[count.index].ako.values.AKOSettings.disableStaticRouteSync
     clusterName  = var.vmw.kubernetes.clusters[count.index].name
     cniPlugin    = var.vmw.kubernetes.clusters[count.index].cni.name
-    subnetIP     = split("/", var.avi.config.vcenter.networks.network_vip.cidr)[0]
-    subnetPrefix = split("/", var.avi.config.vcenter.networks.network_vip.cidr)[1]
-    networkName = var.avi.config.vcenter.networks.network_vip.name
+    subnetIP     = split("/", var.avi.config.vcenter.networks[1].cidr)[0]
+    subnetPrefix = split("/", var.avi.config.vcenter.networks[1].cidr)[1]
+    networkName = var.avi.config.vcenter.networks[1].name
     serviceType = var.vmw.kubernetes.clusters[count.index].ako.values.L7Settings.serviceType
     shardVSSize = var.vmw.kubernetes.clusters[count.index].ako.values.L7Settings.shardVSSize
     serviceEngineGroupName = var.vmw.kubernetes.clusters[count.index].serviceEngineGroup.name
