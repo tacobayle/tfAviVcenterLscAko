@@ -338,37 +338,38 @@
             "name": "vcenter.alb.com"
           }
         ],
-        "networks":
-        {
-          "network_management":
-            {
-              "dhcp_enabled": "true",
-              "exclude_discovered_subnets": "true",
-              "name": "vxw-dvs-34-virtualwire-3-sid-6120002-wdc-06-vc12-avi-mgmt",
-              "type": "V4",
-              "vcenter_dvs": "true"
-            },
-          "network_backend":
-            {
-              "cidr": "100.64.129.0/24",
-              "dhcp_enabled": "yes",
-              "exclude_discovered_subnets": "true",
-              "name": "vxw-dvs-34-virtualwire-116-sid-6120115-wdc-06-vc12-avi-dev112",
-              "type": "V4",
-              "vcenter_dvs": "true"
-            },
-          "network_vip":
-            {
-              "cidr": "100.64.133.0/24",
-              "dhcp_enabled": "no",
-              "exclude_discovered_subnets": "true",
-              "ipEndPool": "99",
-              "ipStartPool": "50",
-              "name": "vxw-dvs-34-virtualwire-120-sid-6120119-wdc-06-vc12-avi-dev116",
-              "type": "V4",
-              "vcenter_dvs": "true"
-            }
-        },
+        "networks": [
+          {
+            "cidr": "10.206.112.0/22",
+            "dhcp_enabled": true,
+            "exclude_discovered_subnets": true,
+            "avi_ipam_pool": "10.206.112.50-10.206.112.99",
+            "name": "vxw-dvs-34-virtualwire-3-sid-6120002-wdc-06-vc12-avi-mgmt",
+            "type": "V4",
+            "management": true,
+            "vcenter_dvs": true
+          },
+          {
+            "cidr": "100.64.129.0/24",
+            "dhcp_enabled": true,
+            "exclude_discovered_subnets": true,
+            "avi_ipam_pool": "100.64.129.50-100.64.129.99",
+            "name": "vxw-dvs-34-virtualwire-116-sid-6120115-wdc-06-vc12-avi-dev112",
+            "type": "V4",
+            "management": false,
+            "vcenter_dvs": true
+          },
+          {
+            "cidr": "100.64.133.0/24",
+            "dhcp_enabled": true,
+            "exclude_discovered_subnets": true,
+            "avi_ipam_pool": "100.64.133.50-100.64.133.99",
+            "name": "vxw-dvs-34-virtualwire-120-sid-6120119-wdc-06-vc12-avi-dev116",
+            "type": "V4",
+            "management": false,
+            "vcenter_dvs": true
+          }
+        ],
         "serviceEngineGroup": [
           {
             "buffer_se": 1,

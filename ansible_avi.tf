@@ -60,9 +60,7 @@ data "template_file" "avi_vcenter_yaml_values" {
     content_library_name = var.avi.config.vcenter.content_library.name
     dc = var.vcenter.dc
     dhcp_enabled = var.avi.config.vcenter.dhcp_enabled
-    network_management = jsonencode(var.avi.config.vcenter.networks.network_management)
-    network_vip = jsonencode(var.avi.config.vcenter.networks.network_vip)
-    network_backend = jsonencode(var.avi.config.vcenter.networks.network_backend)
+    networks = jsonencode(var.avi.config.vcenter.networks)
     service_engine_groups = jsonencode(var.avi.config.vcenter.serviceEngineGroup)
     k8s_service_engine_groups = jsonencode(var.vmw.kubernetes.clusters[*].serviceEngineGroup)
     pools = jsonencode(var.avi.config.vcenter.pools)

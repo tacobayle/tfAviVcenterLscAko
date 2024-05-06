@@ -34,12 +34,8 @@ vcenter:
     content_lib:
       id: ${content_library_id}
       name: ${content_library_name}
-    network_management: |
-      ${network_management}
-    network_vip: |
-      ${network_vip}
-    network_backend: |
-      ${network_backend}
+    networks: |
+      ${networks}
     service_engine_groups: |
       ${service_engine_groups}
     k8s_service_engine_groups: |
