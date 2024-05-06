@@ -847,6 +847,9 @@
           "dns" : [
             {
               "name": "app-vmw-dns",
+              "network_ref": "vxw-dvs-34-virtualwire-116-sid-6120115-wdc-06-vc12-avi-dev112",
+              "cidr": "100.64.129.0/24",
+              "type": "V4",
               "services" : [
                 {
                   "port": 53
@@ -858,6 +861,9 @@
           "http": [
             {
               "name": "app-hello-world",
+              "network_ref": "vxw-dvs-34-virtualwire-116-sid-6120115-wdc-06-vc12-avi-dev112",
+              "cidr": "100.64.129.0/24",
+              "type": "V4",
               "pool_ref": "pool1-vmw-hello",
               "services": [
                 {
@@ -872,6 +878,9 @@
             },
             {
               "name": "app-avi",
+              "network_ref": "vxw-dvs-34-virtualwire-116-sid-6120115-wdc-06-vc12-avi-dev112",
+              "cidr": "100.64.129.0/24",
+              "type": "V4",
               "pool_ref": "pool2-vmw-avi",
               "services": [
                 {
@@ -882,6 +891,9 @@
             },
             {
               "name": "app-security",
+              "network_ref": "vxw-dvs-34-virtualwire-116-sid-6120115-wdc-06-vc12-avi-dev112",
+              "cidr": "100.64.129.0/24",
+              "type": "V4",
               "pool_ref": "pool1-vmw-hello",
               "application_profile_ref": "System-HTTP",
               "http_policies" : [
@@ -903,6 +915,9 @@
             },
             {
               "name": "app-content-switching",
+              "network_ref": "vxw-dvs-34-virtualwire-116-sid-6120115-wdc-06-vc12-avi-dev112",
+              "cidr": "100.64.129.0/24",
+              "type": "V4",
               "pool_ref": "pool2-vmw-avi",
               "http_policies" : [
                 {
@@ -923,6 +938,9 @@
             },
             {
               "name": "app-se-cpu-auto-scale",
+              "network_ref": "vxw-dvs-34-virtualwire-116-sid-6120115-wdc-06-vc12-avi-dev112",
+              "cidr": "100.64.129.0/24",
+              "type": "V4",
               "pool_ref": "pool1-vmw-hello",
               "services": [
                 {
@@ -938,6 +956,9 @@
             },
             {
               "name": "app-waf",
+              "network_ref": "vxw-dvs-34-virtualwire-116-sid-6120115-wdc-06-vc12-avi-dev112",
+              "cidr": "100.64.129.0/24",
+              "type": "V4",
               "pool_ref": "pool3-vmw-waf",
               "services": [
                 {
@@ -948,6 +969,9 @@
             },
             {
               "name": "vs-app-migration",
+              "network_ref": "vxw-dvs-34-virtualwire-116-sid-6120115-wdc-06-vc12-avi-dev112",
+              "cidr": "100.64.129.0/24",
+              "type": "V4",
               "pool_group_ref": "pg1",
               "services": [
                 {
@@ -962,6 +986,9 @@
             },
             {
               "name": "blue-dev",
+              "network_ref": "vxw-dvs-34-virtualwire-116-sid-6120115-wdc-06-vc12-avi-dev112",
+              "cidr": "100.64.129.0/24",
+              "type": "V4",
               "pool_ref": "blue-dev-Pool",
               "tenant_ref": "dev",
               "markers": [{"key": "app", "values": ["blue"]}],
@@ -978,6 +1005,9 @@
             },
             {
               "name": "blue-preprod",
+              "network_ref": "vxw-dvs-34-virtualwire-116-sid-6120115-wdc-06-vc12-avi-dev112",
+              "cidr": "100.64.129.0/24",
+              "type": "V4",
               "pool_ref": "blue-preprod-Pool",
               "tenant_ref": "preprod",
               "markers": [{"key": "app", "values": ["blue"]}],
@@ -994,6 +1024,9 @@
             },
             {
               "name": "blue-prod",
+              "network_ref": "vxw-dvs-34-virtualwire-116-sid-6120115-wdc-06-vc12-avi-dev112",
+              "cidr": "100.64.129.0/24",
+              "type": "V4",
               "pool_ref": "blue-prod-Pool",
               "tenant_ref": "prod",
               "markers": [{"key": "app", "values": ["blue"]}],
@@ -1010,6 +1043,9 @@
             },
             {
               "name": "green-dev",
+              "network_ref": "vxw-dvs-34-virtualwire-116-sid-6120115-wdc-06-vc12-avi-dev112",
+              "cidr": "100.64.129.0/24",
+              "type": "V4",
               "pool_ref": "green-dev-Pool",
               "tenant_ref": "dev",
               "markers": [{"key": "app", "values": ["green"]}],
@@ -1026,6 +1062,9 @@
             },
             {
               "name": "green-preprod",
+              "network_ref": "vxw-dvs-34-virtualwire-116-sid-6120115-wdc-06-vc12-avi-dev112",
+              "cidr": "100.64.129.0/24",
+              "type": "V4",
               "pool_ref": "green-preprod-Pool",
               "tenant_ref": "preprod",
               "markers": [{"key": "app", "values": ["green"]}],
@@ -1042,6 +1081,9 @@
             },
             {
               "name": "green-prod",
+              "network_ref": "vxw-dvs-34-virtualwire-116-sid-6120115-wdc-06-vc12-avi-dev112",
+              "cidr": "100.64.129.0/24",
+              "type": "V4",
               "pool_ref": "green-prod-Pool",
               "tenant_ref": "prod",
               "markers": [{"key": "app", "values": ["green"]}],
@@ -1058,6 +1100,9 @@
             },
             {
               "name": "orange-dev",
+              "network_ref": "vxw-dvs-34-virtualwire-116-sid-6120115-wdc-06-vc12-avi-dev112",
+              "cidr": "100.64.129.0/24",
+              "type": "V4",
               "pool_ref": "orange-dev-Pool",
               "tenant_ref": "dev",
               "markers": [{"key": "app", "values": ["orange"]}],
@@ -1074,6 +1119,9 @@
             },
             {
               "name": "orange-preprod",
+              "network_ref": "vxw-dvs-34-virtualwire-116-sid-6120115-wdc-06-vc12-avi-dev112",
+              "cidr": "100.64.129.0/24",
+              "type": "V4",
               "pool_ref": "orange-preprod-Pool",
               "tenant_ref": "preprod",
               "markers": [{"key": "app", "values": ["orange"]}],
@@ -1090,6 +1138,9 @@
             },
             {
               "name": "orange-prod",
+              "network_ref": "vxw-dvs-34-virtualwire-116-sid-6120115-wdc-06-vc12-avi-dev112",
+              "cidr": "100.64.129.0/24",
+              "type": "V4",
               "pool_ref": "orange-prod-Pool",
               "tenant_ref": "prod",
               "markers": [{"key": "app", "values": ["orange"]}],
@@ -1106,6 +1157,9 @@
             },
             {
               "name": "app-analytics",
+              "network_ref": "vxw-dvs-34-virtualwire-116-sid-6120115-wdc-06-vc12-avi-dev112",
+              "cidr": "100.64.129.0/24",
+              "type": "V4",
               "pool_ref": "pool1-vmw-hello",
               "services": [
                 {
