@@ -329,6 +329,13 @@
       "vcenter": {
         "name": "Default-Cloud",
         "dhcp_enabled": "true",
+        "ipam": {
+          "networks":
+          [
+            "vxw-dvs-34-virtualwire-116-sid-6120115-wdc-06-vc12-avi-dev112",
+            "vxw-dvs-34-virtualwire-120-sid-6120119-wdc-06-vc12-avi-dev116"
+          ]
+        },
         "content_library": {
           "create": true,
           "name": "nicVmwDemoCl"

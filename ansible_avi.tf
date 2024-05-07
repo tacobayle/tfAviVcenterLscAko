@@ -55,6 +55,7 @@ data "template_file" "avi_vcenter_yaml_values" {
     roles = jsonencode(var.avi.config.roles)
     users = jsonencode(var.avi.config.users)
     domains = jsonencode(var.avi.config.vcenter.domains)
+    ipam = jsonencode(var.avi.config.vcenter.ipam)
     cloud_name = var.avi.config.vcenter.name
     content_library_id = var.avi.config.vcenter.content_library.create == true ? vsphere_content_library.library[0].id : data.vsphere_content_library.library[0].id
     content_library_name = var.avi.config.vcenter.content_library.name

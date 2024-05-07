@@ -27,6 +27,8 @@ users: |
 vcenter:
   domains: |
     ${domains}
+  ipam: |
+    ${ipam}
   cloud:
     name: ${cloud_name}
     dc: ${dc}
