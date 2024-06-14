@@ -35,6 +35,9 @@ write_files:
       sudo -u ${username} git clone https://github.com/tacobayle/ansibleAviAclVs /home/${username}/ansibleAviAclVs
       sudo -u ${username} git clone https://github.com/tacobayle/ansibleAviVsIpamDns /home/${username}/ansibleAviVsIpamDns
       sudo -u ${username} git clone https://github.com/tacobayle/tfAviVsIpamDns /home/${username}/tfAviVsIpamDns
+      sudo mkdir -p /home/ubuntu/.ssh
+      sudo chown -R ubuntu /home/ubuntu/.ssh
+      sudo chgrp -R ubuntu /home/ubuntu/.ssh
       echo "cloud init done" | tee /tmp/cloudInitDone.log
     path: /opt/bootstrap.sh
     permissions: 0755
