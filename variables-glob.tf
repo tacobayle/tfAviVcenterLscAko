@@ -52,13 +52,13 @@ variable "controller" {
     cluster = true
     version = "22.1.6-9191"
     wait_for_guest_net_timeout = 4
-    private_key_path = "~/.ssh/cloudKey"
+    private_key_path = "/home/ubuntu/cloudKey"
     from_email = "avicontroller@avidemo.fr"
     se_in_provider_context = "true" # true is required for LSC Cloud
     tenant_access_to_provider_se = "true"
     tenant_vrf = "false"
     aviCredsJsonFile = "~/.avicreds.json"
-    public_key_path = "~/.ssh/cloudKey.pub"
+    public_key_path = "/home/ubuntu/cloudKey.pub"
   }
 }
 
