@@ -52,7 +52,7 @@ L4Settings:
 
 ControllerSettings:
   serviceEngineGroupName: Default-Group # Name of the ServiceEngine Group.
-  controllerVersion: 22.1.5 # The controller API version
+  controllerVersion: 22.1.6 # The controller API version
   cloudName: Default-Cloud # The configured cloud name on the Avi controller.
   controllerHost: 10.41.135.164 # IP address or Hostname of Avi Controller
   tenantName: cluster2 # Name of the tenant where all the AKO objects will be created in AVI. // Required only if tenantsPerCluster is set to True

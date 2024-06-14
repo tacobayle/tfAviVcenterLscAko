@@ -24,7 +24,7 @@ variable "jump" {
     private_key_path = "~/.ssh/cloudKey"
     wait_for_guest_net_timeout = 2
     template_name = "ubuntu-focal-20.04-cloudimg-template"
-    avisdkVersion = "22.1.5"
+    avisdkVersion = "22.1.6"
     username = "ubuntu"
   }
 }
@@ -46,11 +46,11 @@ variable "ansible" {
 
 variable "controller" {
   default = {
-    cpu = 6
+    cpu = 8
     memory = 32768
     disk = 256
     cluster = true
-    version = "22.1.5-9093"
+    version = "22.1.6-9191"
     wait_for_guest_net_timeout = 4
     private_key_path = "~/.ssh/cloudKey"
     from_email = "avicontroller@avidemo.fr"
