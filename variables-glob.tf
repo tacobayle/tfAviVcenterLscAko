@@ -20,8 +20,8 @@ variable "jump" {
     cpu = 2
     memory = 4096
     disk = 20
-    public_key_path = "~/.ssh/cloudKey.pub"
-    private_key_path = "~/.ssh/cloudKey"
+    public_key_path = "/home/ubuntu/cloudKey.pub"
+    private_key_path = "/home/ubuntu/cloudKey"
     wait_for_guest_net_timeout = 2
     template_name = "ubuntu-focal-20.04-cloudimg-template"
     avisdkVersion = "22.1.6"
