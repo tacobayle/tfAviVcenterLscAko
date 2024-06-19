@@ -342,7 +342,7 @@
         },
         "domains": [
           {
-            "name": "vcenter.alb.com"
+            "name": "vcenter.avi.com"
           }
         ],
         "networks": [

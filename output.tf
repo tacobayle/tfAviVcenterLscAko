@@ -37,7 +37,7 @@ output "load_command" {
 }
 
 output "syn_attack_command" {
-  value = "sudo hping3 -c 500000 -d 120 -S -w 64 -p 443 --flood --rand-source app-security.vcenter.alb.com\n"
+  value = "sudo hping3 -c 500000 -d 120 -S -w 64 -p 443 --flood --rand-source app-security.vcenter.avi.com\n"
 }
 
 output "dos_command" {

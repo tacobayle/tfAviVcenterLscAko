@@ -130,7 +130,7 @@ variable "vmw" {
       amko = {
         app_selector = "gslb"
         version = "1.10.1"
-        gslb_domain = "gslb.alb.com"
+        gslb_domain = "gslb.avi.com"
         deploy = false
       }
       argocd = {
