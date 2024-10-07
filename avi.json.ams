@@ -1,0 +1,1187 @@
+{
+  "avi": {
+    "config": {
+      "tenants": [
+        {
+          "name": "automation",
+          "local": true,
+          "config_settings" : {
+            "tenant_vrf": false,
+            "se_in_provider_context": true,
+            "tenant_access_to_provider_se": true
+          }
+        },
+        {
+          "name": "dev",
+          "local": true,
+          "config_settings" : {
+            "tenant_vrf": false,
+            "se_in_provider_context": true,
+            "tenant_access_to_provider_se": true
+          }
+        },
+        {
+          "name": "preprod",
+          "local": true,
+          "config_settings" : {
+            "tenant_vrf": false,
+            "se_in_provider_context": true,
+            "tenant_access_to_provider_se": true
+          }
+        },
+        {
+          "name": "prod",
+          "local": true,
+          "config_settings" : {
+            "tenant_vrf": false,
+            "se_in_provider_context": false,
+            "tenant_access_to_provider_se": false
+          }
+        }
+      ],
+      "roles": [
+        {
+          "allow_unlabelled_access": false,
+          "filters": [
+            {
+              "enabled": true,
+              "match_label": {
+                "key": "app",
+                "values": [
+                  "blue"
+                ]
+              },
+              "match_operation": "ROLE_FILTER_EQUALS"
+            }
+          ],
+          "name": "role-blue",
+          "privileges": [
+            {
+              "resource": "PERMISSION_VIRTUALSERVICE",
+              "type": "WRITE_ACCESS"
+            },
+            {
+              "resource": "PERMISSION_POOL",
+              "type": "WRITE_ACCESS"
+            },
+            {
+              "resource": "PERMISSION_POOLGROUP",
+              "type": "WRITE_ACCESS"
+            }
+          ]
+        },
+        {
+          "allow_unlabelled_access": false,
+          "filters": [
+            {
+              "enabled": true,
+              "match_label": {
+                "key": "app",
+                "values": [
+                  "green"
+                ]
+              },
+              "match_operation": "ROLE_FILTER_EQUALS"
+            }
+          ],
+          "name": "role-green",
+          "privileges": [
+            {
+              "resource": "PERMISSION_VIRTUALSERVICE",
+              "type": "WRITE_ACCESS"
+            },
+            {
+              "resource": "PERMISSION_POOL",
+              "type": "WRITE_ACCESS"
+            },
+            {
+              "resource": "PERMISSION_POOLGROUP",
+              "type": "WRITE_ACCESS"
+            }
+          ]
+        },
+        {
+          "allow_unlabelled_access": false,
+          "filters": [
+            {
+              "enabled": true,
+              "match_label": {
+                "key": "app",
+                "values": [
+                  "orange"
+                ]
+              },
+              "match_operation": "ROLE_FILTER_EQUALS"
+            }
+          ],
+          "name": "role-orange",
+          "privileges": [
+            {
+              "resource": "PERMISSION_VIRTUALSERVICE",
+              "type": "WRITE_ACCESS"
+            },
+            {
+              "resource": "PERMISSION_POOL",
+              "type": "WRITE_ACCESS"
+            },
+            {
+              "resource": "PERMISSION_POOLGROUP",
+              "type": "WRITE_ACCESS"
+            }
+          ]
+        },
+        {
+          "allow_unlabelled_access": true,
+          "name": "role-ops",
+          "privileges": [
+            {
+              "resource": "PERMISSION_VIRTUALSERVICE",
+              "type": "READ_ACCESS"
+            },
+            {
+              "resource": "PERMISSION_POOL",
+              "type": "READ_ACCESS"
+            },
+            {
+              "resource": "PERMISSION_POOLGROUP",
+              "type": "READ_ACCESS"
+            }
+          ]
+        }
+      ],
+      "users": [
+        {
+          "access": [
+            {
+              "role_ref": "/api/role?name=role-blue",
+              "tenant_ref": "/api/tenant?name=dev",
+              "all_tenants": false
+            },
+            {
+              "role_ref": "/api/role?name=role-blue",
+              "tenant_ref": "/api/tenant?name=preprod",
+              "all_tenants": false
+            },
+            {
+              "role_ref": "/api/role?name=role-blue",
+              "tenant_ref": "/api/tenant?name=prod",
+              "all_tenants": false
+            }
+
+          ],
+          "username": "blue",
+          "name": "blue",
+          "is_superuser": false,
+          "default_tenant_ref": "/api/tenant?name=dev",
+          "user_profile_ref": "/api/useraccountprofile?name=Default-User-Account-Profile"
+        },
+        {
+          "access": [
+            {
+              "role_ref": "/api/role?name=role-green",
+              "tenant_ref": "/api/tenant?name=dev",
+              "all_tenants": false
+            },
+            {
+              "role_ref": "/api/role?name=role-green",
+              "tenant_ref": "/api/tenant?name=preprod",
+              "all_tenants": false
+            },
+            {
+              "role_ref": "/api/role?name=role-green",
+              "tenant_ref": "/api/tenant?name=prod",
+              "all_tenants": false
+            }
+
+          ],
+          "username": "green",
+          "name": "green",
+          "is_superuser": false,
+          "default_tenant_ref": "/api/tenant?name=dev",
+          "user_profile_ref": "/api/useraccountprofile?name=Default-User-Account-Profile"
+        },
+        {
+          "access": [
+            {
+              "role_ref": "/api/role?name=role-orange",
+              "tenant_ref": "/api/tenant?name=dev",
+              "all_tenants": false
+            },
+            {
+              "role_ref": "/api/role?name=role-orange",
+              "tenant_ref": "/api/tenant?name=preprod",
+              "all_tenants": false
+            },
+            {
+              "role_ref": "/api/role?name=role-orange",
+              "tenant_ref": "/api/tenant?name=prod",
+              "all_tenants": false
+            }
+
+          ],
+          "username": "orange",
+          "name": "orange",
+          "is_superuser": false,
+          "default_tenant_ref": "/api/tenant?name=dev",
+          "user_profile_ref": "/api/useraccountprofile?name=Default-User-Account-Profile"
+        },
+        {
+          "access": [
+            {
+              "role_ref": "/api/role?name=role-ops",
+              "tenant_ref": "/api/tenant?name=dev",
+              "all_tenants": false
+            },
+            {
+              "role_ref": "/api/role?name=role-ops",
+              "tenant_ref": "/api/tenant?name=preprod",
+              "all_tenants": false
+            },
+            {
+              "role_ref": "/api/role?name=role-ops",
+              "tenant_ref": "/api/tenant?name=prod",
+              "all_tenants": false
+            }
+
+          ],
+          "username": "ops",
+          "name": "ops",
+          "is_superuser": false,
+          "default_tenant_ref": "/api/tenant?name=prod",
+          "user_profile_ref": "/api/useraccountprofile?name=Default-User-Account-Profile"
+        }
+      ],
+      "lsc": {
+        "name": "dc2_bare_metal",
+        "domains": [
+          {
+            "name": "lsc.avi.com"
+          }
+        ],
+        "networks": {
+          "network_vip": {
+            "cidr": "100.66.51.0/24",
+            "ipEndPool": "110",
+            "ipStartPool": "100",
+            "name": "net-lsc-vip",
+            "type": "V4"
+          }
+        },
+        "serviceEngineGroup" : {
+          "name": "Default-Group",
+          "vcpus_per_se": 1,
+          "kernel_version": "4.4.0-21-generic",
+          "memory_per_se": 2048,
+          "disk_per_se": 25,
+          "SE_INBAND_MGMT": "False",
+          "DPDK": "Yes",
+          "count": 2,
+          "networks": [
+            {
+              "name": "ams-cm2w1-nsx1-avi-mgmt"
+            },
+            {
+              "name": "ams-cm2w1-nsx1-avi-66-50"
+            },
+            {
+              "name": "ams-cm2w1-nsx1-avi-66-51"
+            }
+          ],
+          "username": "ubuntu",
+          "templateName": "ubuntu-xenial-16.04-cloudimg-template",
+          "public_key_path": "/home/ubuntu/.ssh/id_rsa.pub",
+          "private_key_path": "/home/ubuntu/.ssh/id_rsa"
+        },
+
+        "pool": {
+          "name": "pool8-lsc",
+          "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN"
+        },
+        "virtualservices": {
+          "dns" : [
+            {
+              "name": "app-lsc-dns",
+              "services" : [
+                {
+                  "port": 53
+                }
+              ]
+            }
+          ],
+          "http": [
+            {
+              "name": "app-lsc",
+              "pool_ref": "pool8-lsc",
+              "services": [
+                {
+                  "port": 80,
+                  "enable_ssl": "false"
+                },
+                {
+                  "port": 443,
+                  "enable_ssl": "true"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "vcenter": {
+        "name": "Default-Cloud",
+        "dhcp_enabled": "true",
+        "ipam": {
+          "networks":
+          [
+            "ams-cm2w1-nsx1-avi-66-50",
+            "ams-cm2w1-nsx1-avi-66-51"
+          ]
+        },
+        "content_library": {
+          "create": true,
+          "name": "nicVmwDemoCl"
+        },
+        "domains": [
+          {
+            "name": "vcenter.avi.com"
+          }
+        ],
+        "networks": [
+          {
+            "cidr": "10.6.248.0/24",
+            "dhcp_enabled": true,
+            "exclude_discovered_subnets": true,
+            "avi_ipam_pool": "10.6.248.61-10.6.248.109",
+            "name": "ams-cm2w1-nsx1-avi-mgmt",
+            "type": "V4",
+            "management": true,
+            "vcenter_dvs": true
+          },
+          {
+            "cidr": "100.66.50.0/24",
+            "dhcp_enabled": false,
+            "exclude_discovered_subnets": true,
+            "avi_ipam_pool": "100.66.50.61-100.66.50.109",
+            "name": "ams-cm2w1-nsx1-avi-66-50",
+            "type": "V4",
+            "management": false,
+            "vcenter_dvs": true
+          },
+          {
+            "cidr": "100.66.51.0/24",
+            "dhcp_enabled": false,
+            "exclude_discovered_subnets": true,
+            "avi_ipam_pool": "100.66.51.61-100.66.51.109",
+            "name": "ams-cm2w1-nsx1-avi-66-51",
+            "type": "V4",
+            "management": false,
+            "vcenter_dvs": true
+          }
+        ],
+        "serviceEngineGroup": [
+          {
+            "buffer_se": 1,
+            "disk_per_se": 25,
+            "extra_shared_config_memory": 0,
+            "ha_mode": "HA_MODE_SHARED",
+            "max_vs_per_se": "20",
+            "memory_per_se": 4096,
+            "min_scaleout_per_vs": 2,
+            "name": "Default-Group",
+            "realtime_se_metrics":
+              {
+                "duration": 0,
+                "enabled": true
+              },
+            "vcenter_folder": "nic-vmw-demo",
+            "vcpus_per_se": 2
+          },
+          {
+            "auto_rebalance": true,
+            "auto_rebalance_criteria": [
+              "SE_AUTO_REBALANCE_CPU"
+            ],
+            "auto_rebalance_interval": 30,
+            "buffer_se": 2,
+            "disk_per_se": 25,
+            "extra_shared_config_memory": 0,
+            "ha_mode": "HA_MODE_SHARED",
+            "max_cpu_usage": 70,
+            "max_scaleout_per_vs": 2,
+            "memory_per_se": 2048,
+            "min_scaleout_per_vs": 1,
+            "name": "seGroupCpuAutoScale",
+            "realtime_se_metrics":
+              {
+                "duration": 0,
+                "enabled": true
+              },
+            "vcenter_folder": "nic-vmw-demo",
+            "vcpus_per_se": 2
+          },
+          {
+            "buffer_se": 0,
+            "disk_per_se": 25,
+            "extra_shared_config_memory": 2000,
+            "ha_mode": "HA_MODE_SHARED",
+            "memory_per_se": 8192,
+            "min_scaleout_per_vs": 1,
+            "name": "seGroupGslb",
+            "realtime_se_metrics":
+              {
+                "duration": 0,
+                "enabled": true
+              },
+            "vcenter_folder": "nic-vmw-demo",
+            "vcpus_per_se": 2
+          }
+        ],
+        "pools": [
+          {
+            "name": "pool1-vmw-hello",
+            "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN",
+            "default_server_port": 80,
+            "avi_app_server_ips": [
+              "100.66.50.203",
+              "100.66.50.204"
+            ]
+          },
+          {
+            "name": "pool2-vmw-avi",
+            "default_server_port": 8080,
+            "avi_app_server_ips": [
+              "100.66.50.203",
+              "100.66.50.204"
+            ]
+          },
+          {
+            "name": "pool3-vmw-waf",
+            "default_server_port": 8081,
+            "avi_app_server_ips": [
+              "100.66.50.203",
+              "100.66.50.204"
+            ]
+          },
+          {
+            "name": "pg1-pool1-app-v1",
+            "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN",
+            "default_server_port": 80,
+            "avi_app_server_ips": [
+              "100.66.50.203",
+              "100.66.50.204"
+            ]
+          },
+          {
+            "name": "pg1-pool2-app-v2",
+            "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN",
+            "default_server_port": 80,
+            "avi_app_server_ips": [
+              "100.66.50.207",
+              "100.66.50.208"
+            ]
+          },
+          {
+            "name": "blue-dev-Pool",
+            "tenant_ref": "dev",
+            "markers": [{"key": "app", "values": ["blue"]}],
+            "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN",
+            "default_server_port": 80,
+            "avi_app_server_ips": [
+              "100.66.50.203",
+              "100.66.50.204"
+            ]
+          },
+          {
+            "name": "blue-preprod-Pool",
+            "tenant_ref": "preprod",
+            "markers": [{"key": "app", "values": ["blue"]}],
+            "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN",
+            "default_server_port": 80,
+            "avi_app_server_ips": [
+              "100.66.50.203",
+              "100.66.50.204"
+            ]
+          },
+          {
+            "name": "blue-prod-Pool",
+            "tenant_ref": "prod",
+            "markers": [{"key": "app", "values": ["blue"]}],
+            "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN",
+            "default_server_port": 80,
+            "avi_app_server_ips": [
+              "100.66.50.203",
+              "100.66.50.204"
+            ]
+          },
+          {
+            "name": "orange-dev-Pool",
+            "tenant_ref": "dev",
+            "markers": [{"key": "app", "values": ["orange"]}],
+            "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN",
+            "default_server_port": 80,
+            "avi_app_server_ips": [
+              "100.66.50.203",
+              "100.66.50.204"
+            ]
+          },
+          {
+            "name": "orange-preprod-Pool",
+            "tenant_ref": "preprod",
+            "markers": [{"key": "app", "values": ["orange"]}],
+            "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN",
+            "default_server_port": 80,
+            "avi_app_server_ips": [
+              "100.66.50.203",
+              "100.66.50.204"
+            ]
+          },
+          {
+            "name": "orange-prod-Pool",
+            "tenant_ref": "prod",
+            "markers": [{"key": "app", "values": ["orange"]}],
+            "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN",
+            "default_server_port": 80,
+            "avi_app_server_ips": [
+              "100.66.50.203",
+              "100.66.50.204"
+            ]
+          },
+          {
+            "name": "green-dev-Pool",
+            "tenant_ref": "dev",
+            "markers": [{"key": "app", "values": ["green"]}],
+            "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN",
+            "default_server_port": 80,
+            "avi_app_server_ips": [
+              "100.66.50.203",
+              "100.66.50.204"
+            ]
+          },
+          {
+            "name": "green-preprod-Pool",
+            "tenant_ref": "preprod",
+            "markers": [{"key": "app", "values": ["green"]}],
+            "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN",
+            "default_server_port": 80,
+            "avi_app_server_ips": [
+              "100.66.50.203",
+              "100.66.50.204"
+            ]
+          },
+          {
+            "name": "green-prod-Pool",
+            "tenant_ref": "prod",
+            "markers": [{"key": "app", "values": ["green"]}],
+            "lb_algorithm": "LB_ALGORITHM_ROUND_ROBIN",
+            "default_server_port": 80,
+            "avi_app_server_ips": [
+              "100.66.50.203",
+              "100.66.50.204"
+            ]
+          }
+        ],
+        "poolgroups": [
+          {
+            "name": "pg1",
+            "members": [
+              {
+                "name": "pg1-pool1-app-v1",
+                "ratio": 70
+              },
+              {
+                "name": "pg1-pool2-app-v2",
+                "ratio": 30
+              }
+            ]
+          }
+        ],
+        "applicationprofile" : [
+          {
+            "name": "http_rate_limit_request_from_client",
+            "type": "APPLICATION_PROFILE_TYPE_HTTP",
+            "http_profile": {
+              "allow_dots_in_header_name": false,
+              "client_body_timeout": 30000,
+              "client_header_timeout": 10000,
+              "client_max_body_size": 0,
+              "client_max_header_size": 12,
+              "client_max_request_size": 48,
+              "collect_client_tls_fingerprint": false,
+              "connection_multiplexing_enabled": true,
+              "detect_ntlm_app": true,
+              "disable_keepalive_posts_msie6": true,
+              "disable_sni_hostname_check": false,
+              "enable_chunk_merge": true,
+              "enable_fire_and_forget": false,
+              "enable_request_body_buffering": false,
+              "enable_request_body_metrics": false,
+              "fwd_close_hdr_for_bound_connections": true,
+              "hsts_enabled": false,
+              "hsts_max_age": 365,
+              "hsts_subdomains_enabled": true,
+              "http2_profile": {
+                "enable_http2_server_push": false,
+                "http2_initial_window_size": 64,
+                "max_http2_concurrent_pushes_per_connection": 10,
+                "max_http2_concurrent_streams_per_connection": 128,
+                "max_http2_control_frames_per_connection": 1000,
+                "max_http2_empty_data_frames_per_connection": 1000,
+                "max_http2_header_field_size": 4096,
+                "max_http2_queued_frames_to_client_per_connection": 1000,
+                "max_http2_requests_per_connection": 1000
+              }
+            },
+            "dos_rl_profile": {
+              "dos_profile": {
+                "thresh_period": 5
+              },
+              "rl_profile": {
+                "client_ip_requests_rate_limit": {
+                  "action": {
+                    "status_code": "HTTP_LOCAL_RESPONSE_STATUS_CODE_429",
+                    "type": "RL_ACTION_CLOSE_CONN"
+                  },
+                  "explicit_tracking": false,
+                  "fine_grain": false,
+                  "rate_limiter": {
+                    "burst_sz": 0,
+                    "count": 10,
+                    "period": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "name": "http_rate_limit_request_per_cookie",
+            "type": "APPLICATION_PROFILE_TYPE_HTTP",
+            "http_profile": {
+              "allow_dots_in_header_name": false,
+              "client_body_timeout": 30000,
+              "client_header_timeout": 10000,
+              "client_max_body_size": 0,
+              "client_max_header_size": 12,
+              "client_max_request_size": 48,
+              "collect_client_tls_fingerprint": false,
+              "connection_multiplexing_enabled": true,
+              "detect_ntlm_app": true,
+              "disable_keepalive_posts_msie6": true,
+              "disable_sni_hostname_check": false,
+              "enable_chunk_merge": true,
+              "enable_fire_and_forget": false,
+              "enable_request_body_buffering": false,
+              "enable_request_body_metrics": false,
+              "fwd_close_hdr_for_bound_connections": true,
+              "hsts_enabled": false,
+              "hsts_max_age": 365,
+              "hsts_subdomains_enabled": true,
+              "http2_profile": {
+                "enable_http2_server_push": false,
+                "http2_initial_window_size": 64,
+                "max_http2_concurrent_pushes_per_connection": 10,
+                "max_http2_concurrent_streams_per_connection": 128,
+                "max_http2_control_frames_per_connection": 1000,
+                "max_http2_empty_data_frames_per_connection": 1000,
+                "max_http2_header_field_size": 4096,
+                "max_http2_queued_frames_to_client_per_connection": 1000,
+                "max_http2_requests_per_connection": 1000
+              }
+            },
+            "dos_rl_profile": {
+              "dos_profile": {
+                "thresh_period": 5
+              },
+              "rl_profile": {
+                "http_header_rate_limits": [
+                  {
+                    "action": {
+                      "status_code": "HTTP_LOCAL_RESPONSE_STATUS_CODE_429",
+                      "type": "RL_ACTION_CLOSE_CONN"
+                    },
+                    "explicit_tracking": false,
+                    "fine_grain": false,
+                    "http_cookie": "shop_session-id",
+                    "rate_limiter": {
+                      "burst_sz": 0,
+                      "count": 20,
+                      "period": 1
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "httppolicyset": [
+          {
+            "http_request_policy": {
+              "rules": [
+                {
+                  "match": {
+                    "path": {
+                      "match_criteria": "CONTAINS",
+                      "match_str": [
+                        "hello",
+                        "world"
+                      ]
+                    }
+                  },
+                  "name": "Rule 1",
+                  "rewrite_url_action": {
+                    "path": {
+                      "tokens": [
+                        {
+                          "str_value": "index.html",
+                          "type": "URI_TOKEN_TYPE_STRING"
+                        }
+                      ],
+                      "type": "URI_PARAM_TYPE_TOKENIZED"
+                    },
+                    "query": {
+                      "keep_query": true
+                    }
+                  },
+                  "switching_action": {
+                    "action": "HTTP_SWITCHING_SELECT_POOL",
+                    "pool_ref": "/api/pool?name=pool1-vmw-hello",
+                    "status_code": "HTTP_LOCAL_RESPONSE_STATUS_CODE_200"
+                  }
+                },
+                {
+                  "match": {
+                    "path": {
+                      "match_criteria": "CONTAINS",
+                      "match_str": [
+                        "avi"
+                      ]
+                    }
+                  },
+                  "name": "Rule 2",
+                  "rewrite_url_action": {
+                    "path": {
+                      "tokens": [
+                        {
+                          "str_value": "",
+                          "type": "URI_TOKEN_TYPE_STRING"
+                        }
+                      ],
+                      "type": "URI_PARAM_TYPE_TOKENIZED"
+                    },
+                    "query": {
+                      "keep_query": true
+                    }
+                  },
+                  "switching_action": {
+                    "action": "HTTP_SWITCHING_SELECT_POOL",
+                    "pool_ref": "/api/pool?name=pool2-vmw-avi",
+                    "status_code": "HTTP_LOCAL_RESPONSE_STATUS_CODE_200"
+                  }
+                }
+              ]
+            },
+          "name": "http-request-policy-app3-content-switching-vmw"
+          },
+          {
+            "name": "http-request-header",
+            "http_request_policy" : {
+              "rules": [
+                {
+                  "name": "Rule 1",
+                  "index": 1,
+                  "enable": true,
+                  "log": true,
+                  "all_headers": true,
+                  "hdr_action": [
+                    {
+                      "action": "HTTP_REPLACE_HDR",
+                      "hdr": {
+                        "name": "X-MyHeader-ToBeReplaced",
+                        "value": {
+                          "val": "NSX-ALB",
+                          "is_sensitive": false
+                        }
+                      },
+                      "hdr_index": 1
+                    },
+                    {
+                      "action": "HTTP_REMOVE_HDR",
+                      "hdr": {
+                        "name": "X-MyHeader-ToBeDeleted"
+                      },
+                      "hdr_index": 2
+                    },
+                    {
+                      "action": "HTTP_ADD_HDR",
+                      "hdr": {
+                        "name": "X-MyHeader-ToBeAdded",
+                        "value": {
+                          "val": "avi",
+                          "is_sensitive": false
+                        }
+                      },
+                      "hdr_index": 3
+                    }
+                  ]
+                }
+              ]
+            },
+            "http_response_policy": {
+              "rules": [
+                {
+                  "name": "Rule 1",
+                  "index": 1,
+                  "enable": true,
+                  "log": true,
+                  "all_headers": true,
+                  "hdr_action": [
+                    {
+                      "action": "HTTP_ADD_HDR",
+                      "hdr": {
+                        "name": "Content-Security-Policy",
+                        "value": {
+                          "val": "policy",
+                          "is_sensitive": false
+                        }
+                      },
+                      "hdr_index": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "virtual_services": {
+          "dns" : [
+            {
+              "name": "app-vmw-dns",
+              "network_ref": "ams-cm2w1-nsx1-avi-66-51",
+              "cidr": "100.66.51.0/24",
+              "type": "V4",
+              "services" : [
+                {
+                  "port": 53
+                }
+              ],
+              "se_group_ref": "seGroupGslb"
+            }
+          ],
+          "http": [
+            {
+              "name": "app-hello-world",
+              "network_ref": "ams-cm2w1-nsx1-avi-66-51",
+              "cidr": "100.66.51.0/24",
+              "type": "V4",
+              "pool_ref": "pool1-vmw-hello",
+              "services": [
+                {
+                  "port": 80,
+                  "enable_ssl": "false"
+                },
+                {
+                  "port": 443,
+                  "enable_ssl": "true"
+                }
+              ]
+            },
+            {
+              "name": "app-avi",
+              "network_ref": "ams-cm2w1-nsx1-avi-66-51",
+              "cidr": "100.66.51.0/24",
+              "type": "V4",
+              "pool_ref": "pool2-vmw-avi",
+              "services": [
+                {
+                  "port": 443,
+                  "enable_ssl": "true"
+                }
+              ]
+            },
+            {
+              "name": "app-security",
+              "network_ref": "ams-cm2w1-nsx1-avi-66-51",
+              "cidr": "100.66.51.0/24",
+              "type": "V4",
+              "pool_ref": "pool1-vmw-hello",
+              "application_profile_ref": "System-HTTP",
+              "http_policies" : [
+                {
+                  "http_policy_set_ref": "/api/httppolicyset?name=http-request-header",
+                  "index": 11
+                }
+              ],
+              "services": [
+                {
+                  "port": 80,
+                  "enable_ssl": "false"
+                },
+                {
+                  "port": 443,
+                  "enable_ssl": "true"
+                }
+              ]
+            },
+            {
+              "name": "app-content-switching",
+              "network_ref": "ams-cm2w1-nsx1-avi-66-51",
+              "cidr": "100.66.51.0/24",
+              "type": "V4",
+              "pool_ref": "pool2-vmw-avi",
+              "http_policies" : [
+                {
+                  "http_policy_set_ref": "/api/httppolicyset?name=http-request-policy-app3-content-switching-vmw",
+                  "index": 11
+                }
+              ],
+              "services": [
+                {
+                  "port": 80,
+                  "enable_ssl": "false"
+                },
+                {
+                  "port": 443,
+                  "enable_ssl": "true"
+                }
+              ]
+            },
+            {
+              "name": "app-se-cpu-auto-scale",
+              "network_ref": "ams-cm2w1-nsx1-avi-66-51",
+              "cidr": "100.66.51.0/24",
+              "type": "V4",
+              "pool_ref": "pool1-vmw-hello",
+              "services": [
+                {
+                  "port": 80,
+                  "enable_ssl": "false"
+                },
+                {
+                  "port": 443,
+                  "enable_ssl": "true"
+                }
+              ],
+              "se_group_ref": "seGroupCpuAutoScale"
+            },
+            {
+              "name": "app-waf",
+              "network_ref": "ams-cm2w1-nsx1-avi-66-51",
+              "cidr": "100.66.51.0/24",
+              "type": "V4",
+              "pool_ref": "pool3-vmw-waf",
+              "services": [
+                {
+                  "port": 443,
+                  "enable_ssl": "true"
+                }
+              ]
+            },
+            {
+              "name": "vs-app-migration",
+              "network_ref": "ams-cm2w1-nsx1-avi-66-51",
+              "cidr": "100.66.51.0/24",
+              "type": "V4",
+              "pool_group_ref": "pg1",
+              "services": [
+                {
+                  "port": 80,
+                  "enable_ssl": "false"
+                },
+                {
+                  "port": 443,
+                  "enable_ssl": "true"
+                }
+              ]
+            },
+            {
+              "name": "blue-dev",
+              "network_ref": "ams-cm2w1-nsx1-avi-66-51",
+              "cidr": "100.66.51.0/24",
+              "type": "V4",
+              "pool_ref": "blue-dev-Pool",
+              "tenant_ref": "dev",
+              "markers": [{"key": "app", "values": ["blue"]}],
+              "services": [
+                {
+                  "port": 80,
+                  "enable_ssl": "false"
+                },
+                {
+                  "port": 443,
+                  "enable_ssl": "true"
+                }
+              ]
+            },
+            {
+              "name": "blue-preprod",
+              "network_ref": "ams-cm2w1-nsx1-avi-66-51",
+              "cidr": "100.66.51.0/24",
+              "type": "V4",
+              "pool_ref": "blue-preprod-Pool",
+              "tenant_ref": "preprod",
+              "markers": [{"key": "app", "values": ["blue"]}],
+              "services": [
+                {
+                  "port": 80,
+                  "enable_ssl": "false"
+                },
+                {
+                  "port": 443,
+                  "enable_ssl": "true"
+                }
+              ]
+            },
+            {
+              "name": "blue-prod",
+              "network_ref": "ams-cm2w1-nsx1-avi-66-51",
+              "cidr": "100.66.51.0/24",
+              "type": "V4",
+              "pool_ref": "blue-prod-Pool",
+              "tenant_ref": "prod",
+              "markers": [{"key": "app", "values": ["blue"]}],
+              "services": [
+                {
+                  "port": 80,
+                  "enable_ssl": "false"
+                },
+                {
+                  "port": 443,
+                  "enable_ssl": "true"
+                }
+              ]
+            },
+            {
+              "name": "green-dev",
+              "network_ref": "ams-cm2w1-nsx1-avi-66-51",
+              "cidr": "100.66.51.0/24",
+              "type": "V4",
+              "pool_ref": "green-dev-Pool",
+              "tenant_ref": "dev",
+              "markers": [{"key": "app", "values": ["green"]}],
+              "services": [
+                {
+                  "port": 80,
+                  "enable_ssl": "false"
+                },
+                {
+                  "port": 443,
+                  "enable_ssl": "true"
+                }
+              ]
+            },
+            {
+              "name": "green-preprod",
+              "network_ref": "ams-cm2w1-nsx1-avi-66-51",
+              "cidr": "100.66.51.0/24",
+              "type": "V4",
+              "pool_ref": "green-preprod-Pool",
+              "tenant_ref": "preprod",
+              "markers": [{"key": "app", "values": ["green"]}],
+              "services": [
+                {
+                  "port": 80,
+                  "enable_ssl": "false"
+                },
+                {
+                  "port": 443,
+                  "enable_ssl": "true"
+                }
+              ]
+            },
+            {
+              "name": "green-prod",
+              "network_ref": "ams-cm2w1-nsx1-avi-66-51",
+              "cidr": "100.66.51.0/24",
+              "type": "V4",
+              "pool_ref": "green-prod-Pool",
+              "tenant_ref": "prod",
+              "markers": [{"key": "app", "values": ["green"]}],
+              "services": [
+                {
+                  "port": 80,
+                  "enable_ssl": "false"
+                },
+                {
+                  "port": 443,
+                  "enable_ssl": "true"
+                }
+              ]
+            },
+            {
+              "name": "orange-dev",
+              "network_ref": "ams-cm2w1-nsx1-avi-66-51",
+              "cidr": "100.66.51.0/24",
+              "type": "V4",
+              "pool_ref": "orange-dev-Pool",
+              "tenant_ref": "dev",
+              "markers": [{"key": "app", "values": ["orange"]}],
+              "services": [
+                {
+                  "port": 80,
+                  "enable_ssl": "false"
+                },
+                {
+                  "port": 443,
+                  "enable_ssl": "true"
+                }
+              ]
+            },
+            {
+              "name": "orange-preprod",
+              "network_ref": "ams-cm2w1-nsx1-avi-66-51",
+              "cidr": "100.66.51.0/24",
+              "type": "V4",
+              "pool_ref": "orange-preprod-Pool",
+              "tenant_ref": "preprod",
+              "markers": [{"key": "app", "values": ["orange"]}],
+              "services": [
+                {
+                  "port": 80,
+                  "enable_ssl": "false"
+                },
+                {
+                  "port": 443,
+                  "enable_ssl": "true"
+                }
+              ]
+            },
+            {
+              "name": "orange-prod",
+              "network_ref": "ams-cm2w1-nsx1-avi-66-51",
+              "cidr": "100.66.51.0/24",
+              "type": "V4",
+              "pool_ref": "orange-prod-Pool",
+              "tenant_ref": "prod",
+              "markers": [{"key": "app", "values": ["orange"]}],
+              "services": [
+                {
+                  "port": 80,
+                  "enable_ssl": "false"
+                },
+                {
+                  "port": 443,
+                  "enable_ssl": "true"
+                }
+              ]
+            },
+            {
+              "name": "app-analytics",
+              "network_ref": "ams-cm2w1-nsx1-avi-66-51",
+              "cidr": "100.66.51.0/24",
+              "type": "V4",
+              "pool_ref": "pool1-vmw-hello",
+              "services": [
+                {
+                  "port": 80,
+                  "enable_ssl": "false"
+                },
+                {
+                  "port": 443,
+                  "enable_ssl": "true"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}

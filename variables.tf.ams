@@ -1,0 +1,21 @@
+variable "vcenter" {
+  default = {
+    dc = "ams-cm2w1-vc1"
+    cluster = "ams-cm2w1-vc1-c1"
+    datastore = "ams-cm2w1-vc1-c1-vsan"
+    resource_pool = "ams-cm2w1-vc1-c1/Resources"
+    folder = "nic-vmw-demo"
+    networkMgmt = "ams-cm2w1-nsx1-avi-mgmt"
+    avi_ctrl_floating_ip = "10.6.248.80"
+    avi_ctrl_dns = ["192.19.189.30", "192.19.189.10"]
+    avi_ctrl_ntp = ["10.97.0.60"]
+    backend_network = "ams-cm2w1-nsx1-avi-66-50"
+    backend_ips = ["100.66.50.241", "100.66.50.242"]
+    backend_ips_pg = ["100.66.50.243", "100.66.50.244"]
+    backend_lsc_network = "ams-cm2w1-nsx1-avi-66-50"
+    backend_lsc_ips = ["100.66.51.241", "100.66.51.242"]
+    client_network = "ams-cm2w1-nsx1-avi-66-52"
+    client_ips = ["100.66.52.241", "100.66.52.242", "100.66.52.243"]
+    k8s_network = "ams-cm2w1-nsx1-avi-66-53"
+  }
+}

@@ -68,7 +68,6 @@ variable "backend_vmw" {
     memory = 4096
     disk = 20
     username = "ubuntu"
-    network = "vxw-dvs-34-virtualwire-117-sid-1080116-sof2-01-vc08-avi-dev113"
     wait_for_guest_net_timeout = 2
     template_name = "ubuntu-bionic-18.04-cloudimg-template"
     netplanFile = "/etc/netplan/50-cloud-init.yaml"
